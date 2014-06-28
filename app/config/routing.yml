@@ -5,4 +5,3 @@ andy_truong_common:
 andy_truong_bible:
     resource: "@AndyTruongBibleBundle/Resources/config/routing.yml"
     prefix:   /
-
