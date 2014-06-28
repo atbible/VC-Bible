@@ -1,0 +1,3 @@
+andy_truong_common_homepage:
+    path:     /hello/{name}
+    defaults: { _controller: AndyTruongCommonBundle:Default:index }

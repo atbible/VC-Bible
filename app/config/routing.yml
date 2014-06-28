@@ -1,0 +1,8 @@
+andy_truong_common:
+    resource: "@AndyTruongCommonBundle/Resources/config/routing.yml"
+    prefix:   /
+
+andy_truong_bible:
+    resource: "@AndyTruongBibleBundle/Resources/config/routing.yml"
+    prefix:   /
+
