@@ -13,18 +13,11 @@ class LanguageEntityTest extends EntityTestCase
      */
     protected $class_names = ['AndyTruong\Bundle\CommonBundle\Entity\LanguageEntity'];
 
-    public function tearDown()
-    {
-        $mtd = $this->em->getMetadataFactory()->getMetadataFor($this->class_name);
-        $schema_tool = new SchemaTool($this->em);
-        $schema_tool->dropSchema([$mtd]);
-    }
-
     public function testCreate()
     {
         $en = LanguageEntity::fromArray(['id' => 'en', 'name' => 'English']);
 
-        $this->assertInstanceOf($this->class_name, $en);
+        $this->assertInstanceOf('AndyTruong\Bundle\CommonBundle\Entity\LanguageEntity', $en);
 
         $this->em->persist($en);
         $this->em->flush();
@@ -38,9 +31,12 @@ class LanguageEntityTest extends EntityTestCase
         $this->testCreate();
 
         /* @var $saved_entity LanguageEntity */
-        $saved_entity = $this->em->getRepository($this->class_name)->find('en');
+        $saved_entity = $this
+            ->em
+            ->getRepository('AndyTruong\Bundle\CommonBundle\Entity\LanguageEntity')
+            ->find('en');
 
-        $this->assertInstanceOf($this->class_name, $saved_entity);
+        $this->assertInstanceOf('AndyTruong\Bundle\CommonBundle\Entity\LanguageEntity', $saved_entity);
         $this->assertEquals(['en', 'English', 0, LanguageEntity::DIRECTION_LTR], [
             $saved_entity->getId(),
             $saved_entity->getName(),
@@ -59,7 +55,11 @@ class LanguageEntityTest extends EntityTestCase
         $this->em->flush();
 
         /* @var $saved_entity LanguageEntity */
-        $saved_entity = $this->em->getRepository($this->class_name)->find('en');
+        $saved_entity = $this
+            ->em
+            ->getRepository('AndyTruong\Bundle\CommonBundle\Entity\LanguageEntity')
+            ->find('en');
+
         $this->assertEquals('Tiếng Anh', $saved_entity->getName());
     }
 

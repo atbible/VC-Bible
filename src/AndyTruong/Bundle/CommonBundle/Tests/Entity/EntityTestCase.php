@@ -39,4 +39,18 @@ class EntityTestCase extends KernelTestCase
         }
     }
 
+    public function tearDown()
+    {
+        parent::tearDown();
+
+        if (!empty($this->class_names)) {
+            $schema_tool = new SchemaTool($this->em);
+
+            foreach ($this->class_names as $class_name) {
+                $mtd = $this->em->getMetadataFactory()->getMetadataFor($class_name);
+                $schema_tool->dropSchema([$mtd]);
+            }
+        }
+    }
+
 }
