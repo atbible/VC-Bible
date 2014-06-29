@@ -3,29 +3,43 @@
 namespace AndyTruong\Bundle\BibleBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Doctrine\ORM\Mapping\ManyToOne;
+use InvalidArgumentException;
 
 /**
  * Verse
  *
  * @ORM\Table()
- * @ORM\Entity(repositoryClass="AndyTruong\Bundle\BibleBundle\Entity\VerseRepository")
+ * @ORM\Entity(repositoryClass="VerseRepository")
  */
 class VerseEntity
 {
 
     /**
+     * @ORM\Column(name="id", type="integer")
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="AUTO")
+     * @var int
+     */
+    private $id;
+
+    /**
      * @var integer
      *
      * @ORM\Column(name="number", type="integer")
-     * @ORM\Id
      */
     private $number;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="AndyTruong\Bundle\BibleBundle\Entity\TranslationEntity", cascade={"all"}, fetch="LAZY")
+     * @var TranslationEntity
+     */
+    private $translation;
 
     /**
      * @var integer
      *
      * @ORM\Column(name="book", type="integer")
-     * @ORM\Id
      */
     private $book;
 
@@ -33,7 +47,6 @@ class VerseEntity
      * @var integer
      *
      * @ORM\Column(name="chapter", type="integer")
-     * @ORM\Id
      */
     private $chapter;
 
@@ -50,6 +63,17 @@ class VerseEntity
      * @ORM\Column(name="notes", type="text")
      */
     private $notes;
+
+    public function getId()
+    {
+        return $this->id;
+    }
+
+    public function setId($id)
+    {
+        $this->id = $id;
+        return $this;
+    }
 
     /**
      * Set id
@@ -154,6 +178,28 @@ class VerseEntity
     }
 
     /**
+     * Get translation.
+     *
+     * @return TranslationEntity
+     */
+    public function getTranslation()
+    {
+        return $this->translation;
+    }
+
+    /**
+     * Set translation.
+     *
+     * @param \AndyTruong\Bundle\BibleBundle\Entity\TranslationEntity $translation
+     * @return \AndyTruong\Bundle\BibleBundle\Entity\VerseEntity
+     */
+    public function setTranslation(TranslationEntity $translation)
+    {
+        $this->translation = $translation;
+        return $this;
+    }
+
+    /**
      * Get notes
      *
      * @return string
@@ -177,6 +223,9 @@ class VerseEntity
                 case 'number':
                     $me->setNumber($v);
                     break;
+                case 'translation':
+                    $me->setTranslation($v);
+                    break;
                 case 'book':
                     $me->setBook($v);
                     break;
@@ -190,7 +239,7 @@ class VerseEntity
                     $me->setNotes($v);
                     break;
                 default:
-                    throw new \InvalidArgumentException(\sprintf('Key %s is not supported.', $k));
+                    throw new InvalidArgumentException(\sprintf('Key %s is not supported.', $k));
             }
         }
 
