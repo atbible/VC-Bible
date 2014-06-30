@@ -9,7 +9,7 @@ use InvalidArgumentException;
 /**
  * Verse
  *
- * @ORM\Table()
+ * @ORM\Table(name="verse")
  * @ORM\Entity(repositoryClass="VerseRepository")
  */
 class VerseEntity

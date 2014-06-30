@@ -8,7 +8,7 @@ use InvalidArgumentException;
 /**
  * Translation
  *
- * @ORM\Table()
+ * @ORM\Table(name="translation")
  * @ORM\Entity
  */
 class TranslationEntity
