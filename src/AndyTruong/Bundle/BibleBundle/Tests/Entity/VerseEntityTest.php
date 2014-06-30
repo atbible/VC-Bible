@@ -24,6 +24,7 @@ class VerseEntityTest extends EntityTestCase
     protected $class_names = [
         'AndyTruong\Bundle\BibleBundle\Entity\VerseEntity',
         'AndyTruong\Bundle\BibleBundle\Entity\TranslationEntity',
+        'AndyTruong\Bundle\CommonBundle\Entity\LanguageEntity'
     ];
 
     /**
@@ -40,6 +41,10 @@ class VerseEntityTest extends EntityTestCase
                 'translation' => TranslationEntity::fromArray([
                     'name' => 'phankhoi',
                     'writing' => 'Phan Khôi',
+                    'language' => \AndyTruong\Bundle\CommonBundle\Entity\LanguageEntity::fromArray([
+                        'id' => 'vi',
+                        'name' => 'Vietnamese'
+                    ]),
                     'notes' => 'Most stable version in Vietnamese',
                 ])
         ]);
@@ -52,6 +57,7 @@ class VerseEntityTest extends EntityTestCase
     public function testCreate()
     {
         $stub = $this->getStub();
+        $this->em->persist($stub->getTranslation()->getLanguage());
         $this->em->persist($stub->getTranslation());
         $this->em->persist($stub);
         $this->em->flush();

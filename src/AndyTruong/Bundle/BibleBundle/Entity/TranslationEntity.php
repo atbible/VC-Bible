@@ -2,6 +2,7 @@
 
 namespace AndyTruong\Bundle\BibleBundle\Entity;
 
+use AndyTruong\Bundle\CommonBundle\Entity\LanguageEntity;
 use Doctrine\ORM\Mapping as ORM;
 use InvalidArgumentException;
 
@@ -35,6 +36,12 @@ class TranslationEntity
      * @ORM\Column(name="writing", type="string", length=255)
      */
     private $writing;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="AndyTruong\Bundle\CommonBundle\Entity\LanguageEntity", cascade={"all"}, fetch="LAZY")
+     * @var LanguageEntity
+     */
+    private $language;
 
     /**
      * @var string
@@ -100,6 +107,28 @@ class TranslationEntity
     }
 
     /**
+     * Get language.
+     *
+     * @return LanguageEntity
+     */
+    public function getLanguage()
+    {
+        return $this->language;
+    }
+
+    /**
+     * Set language.
+     *
+     * @param LanguageEntity $language
+     * @return TranslationEntity
+     */
+    public function setLanguage(LanguageEntity $language)
+    {
+        $this->language = $language;
+        return $this;
+    }
+
+    /**
      * Set notes
      *
      * @param string $notes
@@ -139,6 +168,9 @@ class TranslationEntity
                     break;
                 case 'writing':
                     $me->setWriting($v);
+                    break;
+                case 'language':
+                    $me->setLanguage($v);
                     break;
                 case 'notes':
                     $me->setNotes($v);
