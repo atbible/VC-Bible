@@ -8,11 +8,11 @@ parameters:
     database_name: vcbible
     database_user: root
     database_password: null
-    database_path: var/cache/test/db.sqlite
+    database_path: var/db.test.sqlite
 
 doctrine:
     dbal:
-        path: "%database_path%"
+        path: "%kernel.root_dir%/../%database_path%"
 
 framework:
     test: ~
