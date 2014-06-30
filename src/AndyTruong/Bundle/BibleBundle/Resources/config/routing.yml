@@ -1,3 +1,3 @@
-andy_truong_bible_homepage:
-    path:     /hello/{name}
-    defaults: { _controller: AndyTruongBibleBundle:Default:index }
+atbible_restful:
+    type:     rest
+    resource: atbible.controller.restful
