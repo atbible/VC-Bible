@@ -34,4 +34,9 @@ class RestfulController
         ;
     }
 
+    public function getBooksAction()
+    {
+        return (require dirname(__DIR__) . '/Resources/info/books.php');
+    }
+
 }
