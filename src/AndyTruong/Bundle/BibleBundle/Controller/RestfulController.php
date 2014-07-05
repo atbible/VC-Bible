@@ -2,23 +2,28 @@
 
 namespace AndyTruong\Bundle\BibleBundle\Controller;
 
-use FOS\RestBundle\Controller\Annotations\View;
-use FOS\RestBundle\Controller\FOSRestController;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
-use FOS\RestBundle\Controller\Annotations\Get;
-use AndyTruong\Bundle\BibleBundle\Entity\TranslationEntity;
 use Doctrine\ORM\EntityManagerInterface;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
+use FOS\RestBundle\Controller\Annotations\Get;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Cache;
 
+/**
+ * @Cache(expires="+ 1 month", public=true)
+ */
 class RestfulController
 {
 
     /**
+     * Entity manager.
      *
      * @var EntityManagerInterface
      */
     private $em;
 
+    /**
+     * Constructor.
+     *
+     * @param EntityManagerInterface $em
+     */
     public function __construct(EntityManagerInterface $em)
     {
         $this->em = $em;
@@ -26,7 +31,6 @@ class RestfulController
 
     /**
      * @Get("/versions")
-     * @View()
      */
     public function getVersionsAction()
     {
@@ -51,7 +55,8 @@ class RestfulController
      * @param string $book
      * @param int $chapter_number
      */
-    public function getChapterAction($translation, $book, $chapter_number) {
+    public function getChapterAction($translation, $book, $chapter_number)
+    {
         foreach ($this->getBooksAction() as $i => $book_info) {
             if ($book === $book_info[0]) {
                 $book_number = $i + 1;
