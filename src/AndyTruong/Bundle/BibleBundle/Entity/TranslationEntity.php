@@ -15,6 +15,8 @@ use InvalidArgumentException;
 class TranslationEntity
 {
 
+    use \AndyTruong\Common\Traits\EntitiyTrait;
+
     /**
      * @ORM\Column(name="id", type="integer")
      * @ORM\Id
@@ -149,38 +151,6 @@ class TranslationEntity
     public function getNotes()
     {
         return $this->notes;
-    }
-
-    /**
-     * Create new translation object from array.
-     *
-     * @param array $input
-     * @return TranslationEntity
-     */
-    public static function fromArray(array $input)
-    {
-        $me = new static();
-
-        foreach ($input as $k => $v) {
-            switch ($k) {
-                case 'name':
-                    $me->setName($v);
-                    break;
-                case 'writing':
-                    $me->setWriting($v);
-                    break;
-                case 'language':
-                    $me->setLanguage($v);
-                    break;
-                case 'notes':
-                    $me->setNotes($v);
-                    break;
-                default:
-                    throw new InvalidArgumentException(sprintf('Key %s is not supported.', $k));
-            }
-        }
-
-        return $me;
     }
 
 }

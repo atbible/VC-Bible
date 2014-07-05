@@ -7,7 +7,7 @@
         "psr-0": { "": "src/", "SymfonyStandard": "app/" }
     },
     "require": {
-        "php": ">=5.3.3",
+        "php": ">=5.4.0",
         "symfony/symfony": "2.5.*",
         "doctrine/orm": "~2.2,>=2.2.3",
         "doctrine/doctrine-bundle": "~1.2",
@@ -20,6 +20,7 @@
         "incenteev/composer-parameter-handler": "~2.0",
         "sensio/generator-bundle": "~2.3",
         "friendsofsymfony/rest-bundle": "1.4.0",
+        "andytruong/common": "@stable",
         "jms/serializer-bundle": "@stable"
     },
     "scripts": {
