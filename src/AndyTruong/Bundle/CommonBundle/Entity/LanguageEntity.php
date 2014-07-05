@@ -12,6 +12,7 @@ use Doctrine\ORM\Mapping as ORM;
  */
 class LanguageEntity
 {
+    use \AndyTruong\Common\Traits\EntitiyTrait;
 
     /**
      * Language written left to right. Possible value of $language->direction.
@@ -139,30 +140,6 @@ class LanguageEntity
     public function getDirection()
     {
         return $this->direction;
-    }
-
-    public static function fromArray($input)
-    {
-        $me = new static();
-
-        foreach ($input as $k => $v) {
-            switch ($k) {
-                case 'id':
-                    $me->setId($v);
-                    break;
-                case 'name':
-                    $me->setName($v);
-                    break;
-                case 'direction':
-                    $me->setDirection($v);
-                    break;
-                case 'weight':
-                    $me->setWeight($v);
-                    break;
-            }
-        }
-
-        return $me;
     }
 
 }
