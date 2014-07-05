@@ -56,6 +56,10 @@ class Manager
         $sql = "SELECT * FROM html WHERE url = '{$url}' AND xpath = '$xpath'";
         $path = $this->yql_url . '?format=json&q=' . urlencode($sql);
         $response = json_decode(file_get_contents($path), true);
+        if (empty($response['query']['results'])) {
+            print_r($response);
+            throw new \RuntimeException('Wrong YQL response.');
+        }
         return reset($response['query']['results']);
     }
 
@@ -156,7 +160,7 @@ class Manager
                     'number' => $number,
                     'body' => $body,
             ]);
-            
+
             $this->em->persist($entity);
         }
 
