@@ -14,6 +14,7 @@ use InvalidArgumentException;
  */
 class VerseEntity
 {
+    use \AndyTruong\Common\Traits\EntitiyTrait;
 
     /**
      * @ORM\Column(name="id", type="integer")
@@ -207,43 +208,6 @@ class VerseEntity
     public function getNotes()
     {
         return $this->notes;
-    }
-
-    /**
-     * Create new verse from associative array.
-     *
-     * @param array $input
-     */
-    public static function fromArray(array $input)
-    {
-        $me = new static();
-
-        foreach ($input as $k => $v) {
-            switch ($k) {
-                case 'number':
-                    $me->setNumber($v);
-                    break;
-                case 'translation':
-                    $me->setTranslation($v);
-                    break;
-                case 'book':
-                    $me->setBook($v);
-                    break;
-                case 'chapter':
-                    $me->setChapter($v);
-                    break;
-                case 'body':
-                    $me->setBody($v);
-                    break;
-                case 'notes':
-                    $me->setNotes($v);
-                    break;
-                default:
-                    throw new InvalidArgumentException(\sprintf('Key %s is not supported.', $k));
-            }
-        }
-
-        return $me;
     }
 
 }
