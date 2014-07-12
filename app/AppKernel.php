@@ -21,6 +21,7 @@ class AppKernel extends Kernel
             new AndyTruong\Bundle\BibleBundle\AndyTruongBibleBundle(),
             new AndyTruong\Bundle\CommonBundle\AndyTruongCommonBundle(),
             new AndyTruong\Bundle\ImportBundle\AndyTruongImportBundle(),
+            new AndyTruong\Bundle\BibleUIBundle\AndyTruongBibleUIBundle(),
         );
 
         if (in_array($this->getEnvironment(), array('dev', 'test'))) {
