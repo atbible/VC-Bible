@@ -4,7 +4,6 @@ namespace AndyTruong\Bundle\BibleBundle\Entity;
 
 use AndyTruong\Bundle\CommonBundle\Entity\LanguageEntity;
 use Doctrine\ORM\Mapping as ORM;
-use InvalidArgumentException;
 
 /**
  * Translation
@@ -15,7 +14,7 @@ use InvalidArgumentException;
 class TranslationEntity
 {
 
-    use \AndyTruong\Common\Traits\EntitiyTrait;
+    use \AndyTruong\Common\Traits\EntityTrait;
 
     /**
      * @ORM\Column(name="id", type="integer")
@@ -40,7 +39,7 @@ class TranslationEntity
     private $writing;
 
     /**
-     * @ORM\ManyToOne(targetEntity="AndyTruong\Bundle\CommonBundle\Entity\LanguageEntity", cascade={"all"}, fetch="LAZY")
+     * @ORM\ManyToOne(targetEntity="LanguageEntity", cascade={"all"}, fetch="LAZY")
      * @var LanguageEntity
      */
     private $language;
