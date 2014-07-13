@@ -14,7 +14,7 @@ use InvalidArgumentException;
  */
 class VerseEntity
 {
-    use \AndyTruong\Common\Traits\EntitiyTrait;
+    use \AndyTruong\Common\Traits\VerseEntity;
 
     /**
      * @ORM\Column(name="id", type="integer")
