@@ -1,0 +1,10 @@
+<div id="bible-ui">
+    <div class="jumbotron">
+        <select ng-model="context.version" ng-change="change.version()" ng-options="version.writing for version in versions"></select>
+        <select ng-model="context.book"    ng-change="change.book()"    ng-options="book[1] for book in books"></select>
+        <select ng-model="context.chapter" ng-change="change.chapter()" ng-options="chapter for chapter in chapters"></select>
+    </div>
+    <div ng-repeat="verse in verses">
+        [{{verse.number}}] {{verse.body}}
+    </div>
+</div>

@@ -1,0 +1,3 @@
+andy_truong_bible_ui_homepage:
+    path:     /
+    defaults: { _controller: AndyTruongBibleUIBundle:Default:index }
