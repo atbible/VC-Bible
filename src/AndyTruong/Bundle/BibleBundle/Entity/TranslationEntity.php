@@ -39,7 +39,7 @@ class TranslationEntity
     private $writing;
 
     /**
-     * @ORM\ManyToOne(targetEntity="LanguageEntity", cascade={"all"}, fetch="LAZY")
+     * @ORM\ManyToOne(targetEntity="AndyTruong\Bundle\CommonBundle\Entity\LanguageEntity", cascade={"all"}, fetch="LAZY")
      * @var LanguageEntity
      */
     private $language;

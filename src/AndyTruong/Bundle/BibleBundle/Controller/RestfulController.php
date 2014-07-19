@@ -57,9 +57,14 @@ class RestfulController
      */
     public function getChapterAction($translation, $book, $chapter_number)
     {
-        foreach ($this->getBooksAction() as $i => $book_info) {
-            if ($book === $book_info[0]) {
-                $book_number = $i + 1;
+        if (is_numeric($book)) {
+            $book_number = $book;
+        }
+        else {
+            foreach ($this->getBooksAction() as $i => $book_info) {
+                if ($book === $book_info[0]) {
+                    $book_number = $i + 1;
+                }
             }
         }
 
@@ -67,20 +72,31 @@ class RestfulController
             return [];
         }
 
-        $query = $this->em
-            ->createQuery(
-                "SELECT v.book, v.chapter, v.number, v.body"
-                . " FROM AndyTruong\Bundle\BibleBundle\Entity\VerseEntity v"
-                . "     JOIN v.translation t"
-                . " WHERE t.name = ?1 AND v.book = ?2 AND v.chapter = ?3"
-            )
-        ;
+        $query = $this->em->createQuery(
+            "SELECT v.book, v.chapter, v.number, v.body"
+            . " FROM AndyTruong\Bundle\BibleBundle\Entity\VerseEntity v"
+            . "     JOIN v.translation t"
+            . " WHERE t.name = ?1 AND v.book = ?2 AND v.chapter = ?3"
+        );
 
         $query->setParameter(1, $translation);
         $query->setParameter(2, $book_number);
         $query->setParameter(3, $chapter_number);
 
         return $query->getResult();
+    }
+
+    /**
+     * @TODO Full text search.
+     *
+     * @param string $version
+     * @param string $keywords
+     * @param int $from
+     * @param int $to
+     */
+    public function getSearchAction($version, $keywords, $from, $to)
+    {
+        $this->em->getRepository($className)->find($id);
     }
 
 }

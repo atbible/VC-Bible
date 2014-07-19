@@ -3,8 +3,6 @@
 namespace AndyTruong\Bundle\BibleBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
-use Doctrine\ORM\Mapping\ManyToOne;
-use InvalidArgumentException;
 
 /**
  * Verse
@@ -14,7 +12,8 @@ use InvalidArgumentException;
  */
 class VerseEntity
 {
-    use \AndyTruong\Common\Traits\EntitiyTrait;
+
+    use \AndyTruong\Common\Traits\EntityTrait;
 
     /**
      * @ORM\Column(name="id", type="integer")
@@ -26,41 +25,36 @@ class VerseEntity
 
     /**
      * @var integer
-     *
      * @ORM\Column(name="number", type="integer")
      */
     private $number;
 
     /**
-     * @ORM\ManyToOne(targetEntity="AndyTruong\Bundle\BibleBundle\Entity\TranslationEntity", cascade={"all"}, fetch="LAZY")
+     * @ORM\ManyToOne(targetEntity="TranslationEntity", cascade={"all"}, fetch="LAZY")
      * @var TranslationEntity
      */
     private $translation;
 
     /**
      * @var integer
-     *
      * @ORM\Column(name="book", type="integer")
      */
     private $book;
 
     /**
      * @var integer
-     *
      * @ORM\Column(name="chapter", type="integer")
      */
     private $chapter;
 
     /**
      * @var string
-     *
      * @ORM\Column(name="body", type="text")
      */
     private $body;
 
     /**
      * @var string
-     *
      * @ORM\Column(name="notes", type="text", nullable=true)
      */
     private $notes;
@@ -105,7 +99,6 @@ class VerseEntity
     public function setBook($book)
     {
         $this->book = $book;
-
         return $this;
     }
 
@@ -128,7 +121,6 @@ class VerseEntity
     public function setChapter($chapter)
     {
         $this->chapter = $chapter;
-
         return $this;
     }
 
@@ -151,7 +143,6 @@ class VerseEntity
     public function setBody($body)
     {
         $this->body = $body;
-
         return $this;
     }
 
@@ -174,7 +165,6 @@ class VerseEntity
     public function setNotes($notes)
     {
         $this->notes = $notes;
-
         return $this;
     }
 
@@ -191,8 +181,8 @@ class VerseEntity
     /**
      * Set translation.
      *
-     * @param \AndyTruong\Bundle\BibleBundle\Entity\TranslationEntity $translation
-     * @return \AndyTruong\Bundle\BibleBundle\Entity\VerseEntity
+     * @param TranslationEntity $translation
+     * @return VerseEntity
      */
     public function setTranslation(TranslationEntity $translation)
     {

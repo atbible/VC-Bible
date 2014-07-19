@@ -13,7 +13,7 @@ use Doctrine\ORM\Mapping as ORM;
 class QueueItem
 {
 
-    use \AndyTruong\Common\Traits\EntitiyTrait;
+    use \AndyTruong\Common\Traits\EntityTrait;
 
     /**
      * @var integer

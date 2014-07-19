@@ -3,14 +3,11 @@ imports:
 
 parameters:
     database_driver: pdo_sqlite
-    database_name: vcbible
-    database_user: root
-    database_password: null
-    database_path: var/db.dev.sqlite
+    database_path: "/Users/andy/git/vcbible/var/db.dev.sqlite"
 
 doctrine:
     dbal:
-        path: "%kernel.root_dir%/../%database_path%"
+        path: "%database_path%"
 
 framework:
     router:

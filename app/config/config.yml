@@ -2,6 +2,10 @@ imports:
     - { resource: parameters.yml }
     - { resource: security.yml }
 
+parameters:
+    database_driver: pdo_sqlite
+    database_path: /Users/andy/git/vcbible/var/db.dev.sqlite
+
 framework:
     #esi:             ~
     #translator:      { fallback: "%locale%" }

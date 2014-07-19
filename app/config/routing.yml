@@ -1,10 +1,5 @@
 andy_truong_bible_ui:
-    resource: "@AndyTruongBibleUIBundle/Controller/"
-    type:     annotation
-    prefix:   /
-
-andy_truong_common:
-    resource: "@AndyTruongCommonBundle/Resources/config/routing.yml"
+    resource: "@AndyTruongBibleUIBundle/Resources/config/routing.yml"
     prefix:   /
 
 andy_truong_bible:
