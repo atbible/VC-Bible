@@ -20,7 +20,7 @@
         "incenteev/composer-parameter-handler": "~2.0",
         "sensio/generator-bundle": "~2.3",
         "friendsofsymfony/rest-bundle": "1.4.0",
-        "andytruong/common": "@stable",
+        "andytruong/common": "@dev",
         "jms/serializer-bundle": "@stable"
     },
     "scripts": {

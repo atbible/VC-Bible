@@ -4,48 +4,41 @@
         "Read more about it at http://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "a9b0613c8fce9cc7d2e5ecd89c259199",
+    "hash": "eacd3b08c93aef96712e6421ca3fa9ca",
     "packages": [
         {
             "name": "andytruong/common",
-            "version": "v0.1.5",
+            "version": "0.1.x-dev",
             "source": {
                 "type": "git",
                 "url": "https://github.com/andytruong/common.git",
-                "reference": "8855565a48fdba5f21d25683f73072979b61cfdb"
+                "reference": "04a2cba9f8d88a3c8db4e46f18d4f8b8a97a882e"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/andytruong/common/zipball/8855565a48fdba5f21d25683f73072979b61cfdb",
-                "reference": "8855565a48fdba5f21d25683f73072979b61cfdb",
+                "url": "https://api.github.com/repos/andytruong/common/zipball/04a2cba9f8d88a3c8db4e46f18d4f8b8a97a882e",
+                "reference": "04a2cba9f8d88a3c8db4e46f18d4f8b8a97a882e",
                 "shasum": ""
             },
             "require": {
                 "andytruong/event": "~0.1.0",
+                "andytruong/serializer": "~0.1.0",
                 "andytruong/yaml": "~0.1.0",
                 "php": ">=5.3.8"
             },
             "require-dev": {
                 "doctrine/cache": "~1.3.0",
-                "doctrine/orm": "~2.4.0",
-                "mustangostang/spyc": "~0.5.0",
                 "phpunit/phpunit": "~4.1.0",
-                "symfony/validator": "~2.5.0",
-                "symfony/yaml": "~2.5.0"
+                "symfony/validator": "~2.5.0"
             },
             "suggest": {
+                "andytruong/phpfns": "~0.1.0",
                 "andytruong/typed_data": "~0.1.0",
                 "doctrine/cache": "~1.3.0",
-                "doctrine/orm": "~2.4.0",
-                "mustangostang/spyc": "0.5.*",
-                "symfony/validator": "~2.5.0",
-                "symfony/yaml": "~2.5.0"
+                "symfony/validator": "~2.5.0"
             },
             "type": "library",
             "autoload": {
-                "files": [
-                    "src/functions/fn.php"
-                ],
                 "psr-4": {
                     "AndyTruong\\Common\\": "src/"
                 }
@@ -68,7 +61,7 @@
                 "api",
                 "render"
             ],
-            "time": "2014-07-15 01:44:49"
+            "time": "2014-07-23 06:58:55"
         },
         {
             "name": "andytruong/event",
@@ -117,6 +110,55 @@
                 "wrapper"
             ],
             "time": "2014-07-15 01:12:22"
+        },
+        {
+            "name": "andytruong/serializer",
+            "version": "v0.1.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/andytruong/serializer.git",
+                "reference": "6dd4a4a25f50bf91da5a641cc75713ad7a8a6f8f"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/andytruong/serializer/zipball/6dd4a4a25f50bf91da5a641cc75713ad7a8a6f8f",
+                "reference": "6dd4a4a25f50bf91da5a641cc75713ad7a8a6f8f",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.3.8"
+            },
+            "require-dev": {
+                "doctrine/orm": "~2.4.0"
+            },
+            "suggest": {
+                "doctrine/orm": "~2.4.0"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "AndyTruong\\Serializer\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Andy Truong",
+                    "email": "thehongtt@gmail.com",
+                    "homepage": "http://v3k.net/",
+                    "role": "Lead Developer"
+                }
+            ],
+            "description": "Very simple library to serialize/unserialize PHP objects.",
+            "homepage": "https://github.com/andytruong/serializer",
+            "keywords": [
+                "json",
+                "serializer"
+            ],
+            "time": "2014-07-15 04:43:41"
         },
         {
             "name": "andytruong/yaml",
@@ -1811,17 +1853,16 @@
         },
         {
             "name": "symfony/monolog-bundle",
-            "version": "v2.6.0",
-            "target-dir": "Symfony/Bundle/MonologBundle",
+            "version": "v2.6.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/MonologBundle.git",
-                "reference": "e1d4aa99c7440b11e9dfbfef7ed63084401dbc6a"
+                "reference": "227bbeefe30f2d95e3fe5fbd1ccda414287a957a"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/MonologBundle/zipball/e1d4aa99c7440b11e9dfbfef7ed63084401dbc6a",
-                "reference": "e1d4aa99c7440b11e9dfbfef7ed63084401dbc6a",
+                "url": "https://api.github.com/repos/symfony/MonologBundle/zipball/227bbeefe30f2d95e3fe5fbd1ccda414287a957a",
+                "reference": "227bbeefe30f2d95e3fe5fbd1ccda414287a957a",
                 "shasum": ""
             },
             "require": {
@@ -1843,8 +1884,8 @@
                 }
             },
             "autoload": {
-                "psr-0": {
-                    "Symfony\\Bundle\\MonologBundle": ""
+                "psr-4": {
+                    "Symfony\\Bundle\\MonologBundle\\": ""
                 }
             },
             "notification-url": "https://packagist.org/downloads/",
@@ -1853,14 +1894,12 @@
             ],
             "authors": [
                 {
-                    "name": "Fabien Potencier",
-                    "email": "fabien@symfony.com",
-                    "homepage": "http://fabien.potencier.org",
-                    "role": "Lead Developer"
-                },
-                {
                     "name": "Symfony Community",
                     "homepage": "http://symfony.com/contributors"
+                },
+                {
+                    "name": "Fabien Potencier",
+                    "email": "fabien@symfony.com"
                 }
             ],
             "description": "Symfony MonologBundle",
@@ -1869,7 +1908,7 @@
                 "log",
                 "logging"
             ],
-            "time": "2014-06-04 16:49:13"
+            "time": "2014-07-21 00:36:06"
         },
         {
             "name": "symfony/swiftmailer-bundle",
@@ -2248,7 +2287,7 @@
     ],
     "minimum-stability": "stable",
     "stability-flags": {
-        "andytruong/common": 0,
+        "andytruong/common": 20,
         "jms/serializer-bundle": 0
     },
     "platform": {
