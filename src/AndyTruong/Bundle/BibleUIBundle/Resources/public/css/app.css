@@ -1,0 +1,77 @@
+a { cursor: pointer; }
+
+.bible-ui {
+    font-family: Verdana,Arial,sans-serif;
+    font-size: 1em;
+    margin-top: 65px;
+}
+
+.reading-area .books { display: none; }
+.reading-area .chapters { display: none; }
+
+@media (min-width: 1200px) {
+    .reading-area .books { display: block; width: 200px; }
+    .reading-area .chapters { display: block; width: 120px; }
+    .reading-area .verses { display: block; width: 765px; margin-top: -10px; }
+}
+
+.h-nav {
+    margin: 0;
+    padding: 0;
+    list-style-type: none;
+    font-size: 0.9em;
+}
+
+.h-nav a.active {
+    font-weight: bold;
+}
+
+.dropdown.chapter ul li {
+    float: left;
+}
+
+.dropdown.chapter ul li a {
+    display: block;
+    font-size: 0.8em;
+    padding: 0;
+}
+
+@media (min-width: 768px) {
+    .dropdown.chapter ul { width: 312px; }
+    .dropdown.chapter ul li a {
+        width: 25px;
+        height: 20px;
+        margin: 3px;
+        padding-top: 2px;
+        background: #efefef;
+        border: 1px solid darkgray;
+        text-align: center;
+    }
+
+    .dropdown.chapter ul li a:hover {
+        background: #ddd;
+    }
+}
+
+.verse {
+    margin: 10px 15px;
+}
+
+.verse:hover {
+    background: lightyellow;
+}
+
+.verse sup {
+    top: 17px;
+    position: relative;
+}
+
+.verse sup {
+    display: block;
+    left: -30px;
+    top: 10px;
+    width: 20px;
+    text-align: right;
+}
+
+.highlight { background: lightyellow; }
