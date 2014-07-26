@@ -1,38 +1,33 @@
 <div id="bible-ui">
-    <div class="jumbotron">
-        <div class="btn-group" dropdown>
-            <button type="button" class="btn btn-default dropdown-toggle">
-                {{context.book[1]}}
-                <span class="caret"></span>
-            </button>
-
-            <ul class="dropdown-menu" role="menu">
+    <div class="reading-area row">
+        <div class="col-md-1 books">
+            <ul class="h-nav">
                 <li ng-repeat="book in books">
-                    <a ng-click="context.book = book;
-                            change.book();">{{book[1]}}</a>
+                    <a 
+                        ng-attr-class="{{book[1] == context.book[1] && 'active'|| ''}}"
+                        ng-click="context.book = book;
+                                change.book();">{{book[1]}}</a>
                 </li>
             </ul>
         </div>
-
-        <div class="btn-group" dropdown>
-            <button type="button" class="btn btn-default dropdown-toggle">
-                Chương {{context.chapter}}
-                <span class="caret"></span>
-            </button>
-            <ul class="dropdown-menu" role="menu">
+        <div class="col-md-1 chapters">
+            <ul class="h-nav">
                 <li ng-repeat="chapter in chapters">
-                    <a href ng-click="context.chapter = chapter;
-                            change.chapter();">Chương {{chapter}}</a>
+                    <a 
+                        ng-attr-class="{{chapter == context.chapter && 'active'|| ''}}"
+                        href ng-click="context.chapter = chapter;
+                                change.chapter();">Chương {{chapter}}</a>
                 </li>
             </ul>
         </div>
-    </div>
-
-    <div
-        ng-repeat="verse in verses"
-        ng-attr-class="{{verse.highlight && 'highlight'|| ''}}"
-        ng-click="verse.highlight = verse.highlight ? false : true">
-        <sup>{{verse.number}}</sup>
-        {{verse.body}}
+        <div class="col-md-1 verses">
+            <div
+                ng-repeat="verse in verses"
+                ng-attr-class="verse {{verse.highlight && 'highlight'|| ''}}"
+                ng-click="verse.highlight = verse.highlight ? false : true">
+                <sup>{{verse.number}}.</sup>
+                {{verse.body}}
+            </div>
+        </div>
     </div>
 </div>
