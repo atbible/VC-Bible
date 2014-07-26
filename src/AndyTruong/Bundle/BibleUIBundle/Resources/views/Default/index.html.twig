@@ -20,16 +20,13 @@
             font-size: 1em;
         }
 
-        .reading-area .books {
-            width: 200px;
-        }
+        .reading-area .books { display: none; }
+        .reading-area .chapters { display: none; }
 
-        .reading-area .chapters {
-            width: 120px;
-        }
-
-        .reading-area .verses {
-            width: 850px;
+        @media (min-width: 1200px) {
+            .reading-area .books { display: block; width: 200px; }
+            .reading-area .chapters { display: block; width: 120px; }
+            .reading-area .verses { display: block; width: 765px; }
         }
 
         .h-nav {
@@ -68,7 +65,7 @@
     </style>
 </head>
 <body ng-controller="BibleUIController">
-    <div class="navbar navbar-inverse" role="navigation">
+    <div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
         <div class="container">
             <div class="navbar-header">
                 <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">

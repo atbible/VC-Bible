@@ -1,6 +1,6 @@
 <div id="bible-ui">
     <div class="reading-area row">
-        <div class="col-md-1 books">
+        <div class="col-sm-1 col-md-1 col-xs-1 books">
             <ul class="h-nav">
                 <li ng-repeat="book in books">
                     <a 
@@ -10,7 +10,7 @@
                 </li>
             </ul>
         </div>
-        <div class="col-md-1 chapters">
+        <div class="col-sm-1 col-md-1 col-xs-1 chapters">
             <ul class="h-nav">
                 <li ng-repeat="chapter in chapters">
                     <a 
@@ -20,7 +20,7 @@
                 </li>
             </ul>
         </div>
-        <div class="col-md-1 verses">
+        <div class="col-sm-12 col-md-12 col-xs-12 verses">
             <div
                 ng-repeat="verse in verses"
                 ng-attr-class="verse {{verse.highlight && 'highlight'|| ''}}"
