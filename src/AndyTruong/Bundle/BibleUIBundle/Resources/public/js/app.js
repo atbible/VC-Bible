@@ -47,7 +47,7 @@
     });
 
     angular
-            .module('BibleUI', ['BibleUIServices', 'BibleUIDirectives'])
+            .module('BibleUI', ['ui.bootstrap', 'BibleUIServices', 'BibleUIDirectives'])
             .controller('BibleUIController', ctrl_arguments);
 
 })(angular);
