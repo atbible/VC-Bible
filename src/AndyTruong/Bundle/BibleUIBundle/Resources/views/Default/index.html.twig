@@ -5,10 +5,21 @@
         <title>{% block title %}Welcome!{% endblock %}</title>
     {% block stylesheets %}{% endblock %}
     <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
+
+    <!-- Bootstrap -->
     <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css"/>
+
+    <!-- AngularJS framework -->
     <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.3.0-beta.15/angular.min.js"></script>
     <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.3.0-beta.15/angular-resource.min.js"></script>
     <script src="//angular-ui.github.io/bootstrap/ui-bootstrap-tpls-0.11.0.js"></script>
+
+    <!-- jQuery -->
+    <script src="//cdn.jsdelivr.net/jquery/1.11.1/jquery.min.js"></script>
+    <script src="//cdn.jsdelivr.net/jquery.ui/1.11.0/jquery-ui.min.js"></script>
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/jquery.ui/1.11.0/themes/smoothness/jquery-ui.min.css" />
+
+    <!-- Custom code -->
     <script src="{{ asset('bundles/andytruongbibleui/js/directives.js') }}"></script>
     <script src="{{ asset('bundles/andytruongbibleui/js/services.js') }}"></script>
     <script src="{{ asset('bundles/andytruongbibleui/js/app.js') }}"></script>

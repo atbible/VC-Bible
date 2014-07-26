@@ -1,4 +1,4 @@
-(function(angular) {
+(function(angular, $) {
     var ctrl_arguments = ['$scope', '$location', 'ServiceVersions', 'ServiceBooks', 'ServiceVerses'];
     ctrl_arguments.push(function($scope, $location, ServiceVersions, ServiceBooks, ServiceVerses) {
         $scope.context = $scope.input = {version: null, book: null, chapter: null};
@@ -33,7 +33,7 @@
             $scope.context.version = $scope.versions[0];
         });
 
-        // Queyr for books
+        // Query for books
         $scope.books = ServiceBooks.query(function() {
             for (var book in $scope.books)
                 if ($scope.input.book === $scope.books[book][0])
@@ -60,4 +60,4 @@
             .controller('BibleUIController', ctrl_arguments)
             ;
 
-})(angular);
+})(angular, jQuery);
