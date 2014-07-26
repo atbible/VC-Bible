@@ -26,6 +26,15 @@ a { cursor: pointer; }
     font-weight: bold;
 }
 
+.dropdown.book ul {
+    padding-left: 5px;
+    list-style-type: none;
+}
+
+.dropdown.book ul ul {
+    font-size: 0.95em;
+}
+
 .dropdown.chapter ul li {
     float: left;
 }
