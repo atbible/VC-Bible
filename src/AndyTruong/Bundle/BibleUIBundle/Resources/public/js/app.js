@@ -44,6 +44,15 @@
 
             $scope.change.book();
         });
+
+        $scope.openSearchDialog = function() {
+            $scope.search = {version: $scope.context.version.name};
+            $('#bibleSearchForm').dialog({minWidth: 450, minHeight: 250});
+        };
+
+        $scope.doSearch = function() {
+            console.log($scope.search);
+        };
     });
 
     angular
@@ -57,7 +66,6 @@
                     return input;
                 };
             })
-            .controller('BibleUIController', ctrl_arguments)
-            ;
+            .controller('BibleUIController', ctrl_arguments);
 
 })(angular, jQuery);
