@@ -3,7 +3,7 @@
 namespace AndyTruong\Bundle\CommonBundle\Tests\Entity;
 
 use AndyTruong\Bundle\CommonBundle\Entity\LanguageEntity;
-use Doctrine\ORM\Tools\SchemaTool;
+use AndyTruong\Serializer\Unserializer;
 
 class LanguageEntityTest extends EntityTestCase
 {
@@ -15,10 +15,13 @@ class LanguageEntityTest extends EntityTestCase
 
     public function testCreate()
     {
-        $en = LanguageEntity::fromArray(['id' => 'en', 'name' => 'English']);
-
+        $unserializer = new Unserializer();
+        $en = $unserializer->fromArray([
+            'id'   => 'en',
+            'name' => 'English'
+            ], 'AndyTruong\Bundle\CommonBundle\Entity\LanguageEntity'
+        );
         $this->assertInstanceOf('AndyTruong\Bundle\CommonBundle\Entity\LanguageEntity', $en);
-
         $this->em->persist($en);
         $this->em->flush();
     }
