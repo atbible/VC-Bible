@@ -9,16 +9,10 @@
                     templateUrl: bundleRoot + '/templates/ui.html'
                 };
             })
-            .directive('bibleNavigation', function(bundleRoot) {
+            .directive('bibleNav', function(bundleRoot) {
                 return {
                     restrict: 'E',
-                    templateUrl: bundleRoot + '/templates/ui-navigation.html'
-                };
-            })
-            .directive('bibleReadingArea', function(bundleRoot) {
-                return {
-                    restrict: 'E',
-                    templateUrl: bundleRoot + '/templates/ui-reading-area.html'
+                    templateUrl: bundleRoot + '/templates/ui.nav.html'
                 };
             });
 
