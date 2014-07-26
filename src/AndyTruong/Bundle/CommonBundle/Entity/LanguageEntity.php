@@ -12,7 +12,6 @@ use Doctrine\ORM\Mapping as ORM;
  */
 class LanguageEntity
 {
-    use \AndyTruong\Common\Traits\EntityTrait;
 
     /**
      * Language written left to right. Possible value of $language->direction.

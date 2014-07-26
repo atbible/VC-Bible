@@ -14,8 +14,6 @@ use Doctrine\ORM\Mapping as ORM;
 class TranslationEntity
 {
 
-    use \AndyTruong\Common\Traits\EntityTrait;
-
     /**
      * @ORM\Column(name="id", type="integer")
      * @ORM\Id
