@@ -70,17 +70,11 @@ class Manager
 
     public function fetchVersions()
     {
-        if (true) {
-            return [
-                ['id' => 'phankhoi', 'name' => 'Hiệu Đính']
-            ];
-        }
-
         $url = 'http://www.tt2012.thanhkinhvietngu.net/bible/';
         $xpath = '//*[@id="bible-navigation-versions"]/li/a';
         foreach ($this->remoteQuery($url, $xpath) as $row) {
             $versions[] = array(
-                'id' => preg_replace('`^/bible/([^/]+).+$`', '$1', $row['href']),
+                'id'   => preg_replace('`^/bible/([^/]+).+$`', '$1', $row['href']),
                 'name' => $row['content'],
             );
         }
@@ -96,10 +90,10 @@ class Manager
                 for ($chapter_number = 1; $chapter_number <= $book[2]; $chapter_number++) {
                     $queue_item = QueueItem::fromArray([
                             'description' => "{$version['name']} {$book_number}:{$chapter_number}",
-                            'url' => "http://www.tt2012.thanhkinhvietngu.net/bible/{$version['id']}/{$book_number}/{$chapter_number}",
-                            'data' => [
+                            'url'         => "http://www.tt2012.thanhkinhvietngu.net/bible/{$version['id']}/{$book_number}/{$chapter_number}",
+                            'data'        => [
                                 'version' => $version,
-                                'book' => $book_number,
+                                'book'    => $book_number,
                                 'chapter' => $chapter_number
                             ]
                     ]);
@@ -134,12 +128,12 @@ class Manager
         }
 
         return TranslationEntity::fromArray([
-            'name' => $name,
-            'writing' => $writing,
-            'language' => LanguageEntity::fromArray([
-                'id' => 'vi',
-                'name' => 'Vietnamese',
-            ])
+                'name'     => $name,
+                'writing'  => $writing,
+                'language' => LanguageEntity::fromArray([
+                    'id'   => 'vi',
+                    'name' => 'Vietnamese',
+                ])
         ]);
     }
 
@@ -155,10 +149,10 @@ class Manager
 
             $entity = VerseEntity::fromArray([
                     'translation' => $translation,
-                    'book' => $book,
-                    'chapter' => $chapter,
-                    'number' => $number,
-                    'body' => $body,
+                    'book'        => $book,
+                    'chapter'     => $chapter,
+                    'number'      => $number,
+                    'body'        => $body,
             ]);
 
             $this->em->persist($entity);

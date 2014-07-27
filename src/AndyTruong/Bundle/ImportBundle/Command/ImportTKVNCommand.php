@@ -25,8 +25,8 @@ class ImportTKVNCommand extends ContainerAwareCommand
 
     protected function execute(InputInterface $input, OutputInterface $output)
     {
-        $manager = new Manager($this->getContainer());
         $limit = (int) $input->getOption('limit');
+        $manager = new Manager($this->getContainer());
 
         if ($restart = (bool) $input->getOption('restart')) {
             $manager->generateQueueItems();

@@ -1,7 +1,0 @@
-parameters:
-#    andy_truong_import.example.class: AndyTruong\Bundle\ImportBundle\Example
-
-services:
-#    andy_truong_import.example:
-#        class: %andy_truong_import.example.class%
-#        arguments: [@service_id, "plain_value", %parameter%]
