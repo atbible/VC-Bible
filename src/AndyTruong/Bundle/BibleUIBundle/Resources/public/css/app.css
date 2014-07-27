@@ -84,3 +84,21 @@ a { cursor: pointer; }
 }
 
 .highlight { background: lightyellow; }
+
+#bibleSearchForm { display: none; }
+
+.search-results {
+    max-height: 400px;
+    overflow: auto;
+}
+
+.search-results blockquote {
+    font-size: 1em;
+    font-style: italic;
+}
+
+.search-results blockquote cite {
+    color: #aaa;
+    font-style: italic;
+    font-weight: bold;
+}

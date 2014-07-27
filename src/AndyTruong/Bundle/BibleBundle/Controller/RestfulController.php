@@ -76,27 +76,38 @@ class RestfulController
             "SELECT v.book, v.chapter, v.number, v.body"
             . " FROM AndyTruong\Bundle\BibleBundle\Entity\VerseEntity v"
             . "     JOIN v.translation t"
-            . " WHERE t.name = ?1 AND v.book = ?2 AND v.chapter = ?3"
+            . " WHERE t.name = :translation AND v.book = :book AND v.chapter = :chapter"
+            . " ORDER BY v.number"
         );
 
-        $query->setParameter(1, $translation);
-        $query->setParameter(2, $book_number);
-        $query->setParameter(3, $chapter_number);
+        $query->setParameter(':translation', $translation);
+        $query->setParameter(':book', $book_number);
+        $query->setParameter(':chapter', $chapter_number);
 
         return $query->getResult();
     }
 
     /**
-     * @TODO Full text search.
+     * Full text search.
      *
-     * @param string $version
+     * @Get("/find/{translation}/{keywords}")
+     * @param string $translation
      * @param string $keywords
-     * @param int $from
-     * @param int $to
      */
-    public function getSearchAction($version, $keywords, $from, $to)
+    public function findAction($translation, $keywords)
     {
-        $this->em->getRepository($className)->find($id);
+        /* @var $query \Doctrine\ORM\Query  */
+        $query = $this->em->createQuery(
+            "SELECT v.book, v.chapter, v.number, v.body"
+            . " FROM AndyTruong\Bundle\BibleBundle\Entity\VerseEntity v"
+            . "     JOIN v.translation t"
+            . " WHERE t.name = :translation AND v.body LIKE :keywords"
+            . " ORDER BY v.book, v.chapter, v.number"
+        );
+        $query->setParameter(':translation', $translation);
+        $query->setParameter(':keywords', "%{$keywords}%");
+
+        return $query->execute();
     }
 
 }

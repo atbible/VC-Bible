@@ -1,6 +1,6 @@
 (function(angular, $) {
-    var ctrl_arguments = ['$scope', '$location', 'ServiceVersions', 'ServiceBooks', 'ServiceVerses'];
-    ctrl_arguments.push(function($scope, $location, ServiceVersions, ServiceBooks, ServiceVerses) {
+    var ctrl_arguments = ['$scope', '$location', 'ServiceVersions', 'ServiceBooks', 'ServiceVerses', 'ServiceFind'];
+    ctrl_arguments.push(function($scope, $location, ServiceVersions, ServiceBooks, ServiceVerses, ServiceFind) {
         $scope.context = $scope.input = {version: null, book: null, chapter: null};
 
         // Parse input
@@ -46,12 +46,16 @@
         });
 
         $scope.openSearchDialog = function() {
-            $scope.search = {version: $scope.context.version.name};
-            $('#bibleSearchForm').dialog({minWidth: 450, minHeight: 250});
+            $scope.search = {
+                version: $scope.context.version.name,
+                keywords: '',
+                results: []
+            };
+            $('#bibleSearchForm').dialog({position: {my: 'center top-250'}, minWidth: 450, minHeight: 250});
         };
 
         $scope.doSearch = function() {
-            console.log($scope.search);
+            $scope.search.results = ServiceFind.query({version: $scope.search.version, keywords: $scope.search.keywords});
         };
     });
 
