@@ -2,12 +2,11 @@
 
 namespace AndyTruong\Bundle\ImportBundle;
 
-use AndyTruong\Bundle\BibleBundle\Entity\TranslationEntity;
-use AndyTruong\Bundle\BibleBundle\Entity\VerseEntity;
-use AndyTruong\Bundle\CommonBundle\Entity\LanguageEntity;
 use AndyTruong\Bundle\ImportBundle\Entity\QueueItem;
+use AndyTruong\Serializer\Unserializer;
 use Doctrine\ORM\EntityManager;
 use Doctrine\ORM\EntityRepository;
+use RuntimeException;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 
 class Manager
@@ -58,7 +57,7 @@ class Manager
         $response = json_decode(file_get_contents($path), true);
         if (empty($response['query']['results'])) {
             print_r($response);
-            throw new \RuntimeException('Wrong YQL response.');
+            throw new RuntimeException('Wrong YQL response.');
         }
         return reset($response['query']['results']);
     }
@@ -83,20 +82,22 @@ class Manager
 
     public function generateQueueItems()
     {
+        $unserialize = new Unserializer();
         $books = require dirname(__DIR__) . '/BibleBundle/Resources/info/books.php';
         foreach ($this->fetchVersions() as $version) {
             foreach ($books as $book_number => $book) {
                 $book_number = $book_number + 1;
                 for ($chapter_number = 1; $chapter_number <= $book[2]; $chapter_number++) {
-                    $queue_item = QueueItem::fromArray([
-                            'description' => "{$version['name']} {$book_number}:{$chapter_number}",
-                            'url'         => "http://www.tt2012.thanhkinhvietngu.net/bible/{$version['id']}/{$book_number}/{$chapter_number}",
-                            'data'        => [
-                                'version' => $version,
-                                'book'    => $book_number,
-                                'chapter' => $chapter_number
-                            ]
-                    ]);
+                    $queue_item = $unserialize->fromArray([
+                        'description' => "{$version['name']} {$book_number}:{$chapter_number}",
+                        'url'         => "http://www.tt2012.thanhkinhvietngu.net/bible/{$version['id']}/{$book_number}/{$chapter_number}",
+                        'data'        => [
+                            'version' => $version,
+                            'book'    => $book_number,
+                            'chapter' => $chapter_number
+                        ]], 'AndyTruong\Bundle\ImportBundle\Entity\QueueItem'
+                    );
+
                     $this->em->persist($queue_item);
                 }
             }
@@ -118,6 +119,8 @@ class Manager
 
     public function getTranslation($name, $writing)
     {
+        $unserialize = new Unserializer();
+
         $translation = $this->em
             ->getRepository('AndyTruong\Bundle\BibleBundle\Entity\TranslationEntity')
             ->findOneBy(['name' => $name, 'writing' => $writing])
@@ -127,18 +130,19 @@ class Manager
             return $translation;
         }
 
-        return TranslationEntity::fromArray([
+        return $unserialize->fromArray([
                 'name'     => $name,
                 'writing'  => $writing,
-                'language' => LanguageEntity::fromArray([
+                'language' => $unserialize->fromArray([
                     'id'   => 'vi',
-                    'name' => 'Vietnamese',
-                ])
-        ]);
+                    'name' => 'Vietnamese'], 'AndyTruong\Bundle\CommonBundle\Entity\LanguageEntity'
+                )], 'AndyTruong\Bundle\BibleBundle\Entity\TranslationEntity'
+        );
     }
 
     public function processQueueItem(QueueItem $queue_item)
     {
+        $unserializer = new Unserializer();
         $data = $queue_item->getData();
         $translation = $this->getTranslation($data['version']['id'], $data['version']['name']);
         $book = $data['book'];
@@ -147,13 +151,13 @@ class Manager
         foreach ($this->remoteQuery($queue_item->getUrl(), '//*[@id="bible-verses"]/div') as $row) {
             list($number, $body) = [$row['sup'], $row['p']];
 
-            $entity = VerseEntity::fromArray([
-                    'translation' => $translation,
-                    'book'        => $book,
-                    'chapter'     => $chapter,
-                    'number'      => $number,
-                    'body'        => $body,
-            ]);
+            $entity = $unserializer->fromArray([
+                'translation' => $translation,
+                'book'        => $book,
+                'chapter'     => $chapter,
+                'number'      => $number,
+                'body'        => $body], 'AndyTruong\Bundle\BibleBundle\Entity\VerseEntity'
+            );
 
             $this->em->persist($entity);
         }
