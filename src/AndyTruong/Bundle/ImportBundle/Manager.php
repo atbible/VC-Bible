@@ -125,8 +125,11 @@ class Manager
 
         $translation = $this->em
             ->getRepository('AndyTruong\Bundle\BibleBundle\Entity\TranslationEntity')
-            ->findOneBy(['name' => $name, 'writing' => $writing])
-        ;
+            ->findOneBy(['name' => $name, 'writing' => $writing]);
+
+        if ($translation) {
+            return $translation;
+        }
 
         if (!$language = $this->em->getRepository('AndyTruong\Bundle\CommonBundle\Entity\LanguageEntity')->findOneBy(['id' => 'vi'])) {
             $language = ['id' => 'vi', 'name' => 'Vietnamese'];
