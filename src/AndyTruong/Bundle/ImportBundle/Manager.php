@@ -2,6 +2,7 @@
 
 namespace AndyTruong\Bundle\ImportBundle;
 
+use AndyTruong\Bundle\BibleBundle\Entity\TranslationEntity;
 use AndyTruong\Bundle\BibleBundle\Entity\VerseEntity;
 use AndyTruong\Bundle\ImportBundle\Entity\QueueItem;
 use AndyTruong\Serializer\Unserializer;
@@ -127,36 +128,42 @@ class Manager
             ->findOneBy(['name' => $name, 'writing' => $writing])
         ;
 
-        if ($translation) {
-            return $translation;
+        if (!$language = $this->em->getRepository('AndyTruong\Bundle\CommonBundle\Entity\LanguageEntity')->findOneBy(['id' => 'vi'])) {
+            $language = ['id' => 'vi', 'name' => 'Vietnamese'];
         }
 
-        return $unserialize->fromArray([
-                'name'     => $name,
-                'writing'  => $writing,
-                'language' => ['id' => 'vi', 'name' => 'Vietnamese']], 'AndyTruong\Bundle\BibleBundle\Entity\TranslationEntity'
-        );
+        $translation = new TranslationEntity();
+        $translation->setName($name);
+        $translation->setWriting($writing);
+        $translation->setLanguage($language);
+        return $translation;
     }
 
     public function processQueueItem(QueueItem $queue_item)
     {
-        $unserializer = new Unserializer();
         $data = $queue_item->getData();
         $translation = $this->getTranslation($data['version']['id'], $data['version']['name']);
         $book = $data['book'];
         $chapter = $data['chapter'];
 
         foreach ($this->remoteQuery($queue_item->getUrl(), '//*[@id="bible-verses"]/div') as $row) {
-            list($number, $body) = [$row['sup'], $row['p']];
+            list($number, $body) = [$row['sup'], array_pop($row)];
 
-            $entity = new VerseEntity();
-            $entity->setTranslation($translation);
-            $entity->setBook($book);
-            $entity->setChapter($chapter);
-            $entity->setNumber($number);
-            $entity->setBody($body);
+            $verse = $this->em
+                ->getRepository('AndyTruong\Bundle\BibleBundle\Entity\VerseEntity')
+                ->findOneBy(['translation' => $translation, 'book' => $book, 'chapter' => $chapter, 'number' => $number]);
 
-            $this->em->persist($entity);
+            if (!$verse) {
+                $verse = new VerseEntity();
+            }
+
+            $verse->setTranslation($translation);
+            $verse->setBook($book);
+            $verse->setChapter($chapter);
+            $verse->setNumber($number);
+            $verse->setBody($body);
+
+            $this->em->persist($verse);
         }
 
         $this->em->remove($queue_item);
