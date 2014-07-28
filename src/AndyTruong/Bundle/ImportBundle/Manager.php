@@ -2,6 +2,7 @@
 
 namespace AndyTruong\Bundle\ImportBundle;
 
+use AndyTruong\Bundle\BibleBundle\Entity\VerseEntity;
 use AndyTruong\Bundle\ImportBundle\Entity\QueueItem;
 use AndyTruong\Serializer\Unserializer;
 use Doctrine\ORM\EntityManager;
@@ -148,13 +149,12 @@ class Manager
         foreach ($this->remoteQuery($queue_item->getUrl(), '//*[@id="bible-verses"]/div') as $row) {
             list($number, $body) = [$row['sup'], $row['p']];
 
-            $entity = $unserializer->fromArray([
-                'translation' => $translation,
-                'book'        => $book,
-                'chapter'     => $chapter,
-                'number'      => $number,
-                'body'        => $body], 'AndyTruong\Bundle\BibleBundle\Entity\VerseEntity'
-            );
+            $entity = new VerseEntity();
+            $entity->setTranslation($translation);
+            $entity->setBook($book);
+            $entity->setChapter($chapter);
+            $entity->setNumber($number);
+            $entity->setBody($body);
 
             $this->em->persist($entity);
         }
