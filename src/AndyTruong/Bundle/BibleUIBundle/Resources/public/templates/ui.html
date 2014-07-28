@@ -48,7 +48,9 @@
             <blockquote>
                 {{result.body}}
                 <cite>
-                    — <a href="#/{{search.version}}/{{books[result.book - 1][0]}}/{{result.chapter}}">
+                    — <a 
+                        ng-click="change.search_results(search.version, result.book, result.chapter)"
+                        href="#/{{search.version}}/{{books[result.book - 1][0]}}/{{result.chapter}}">
                         {{books[result.book - 1][1]}} {{result.chapter}}:{{result.number}}
                     </a>
                 </cite>

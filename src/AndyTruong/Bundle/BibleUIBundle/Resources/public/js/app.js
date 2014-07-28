@@ -26,6 +26,15 @@
                 var params = {'version': $scope.context.version.name, 'book': $scope.context.book[0], 'chapter': $scope.context.chapter};
                 $scope.verses = ServiceVerses.query(params);
                 $location.path('/' + $scope.context.version.name + '/' + $scope.context.book[0] + '/' + $scope.context.chapter);
+            },
+            search_results: function(version, book, chapter) {
+                for (var index in $scope.versions)
+                    if (version === $scope.versions[index].name)
+                        $scope.context.version = $scope.versions[index]
+
+                $scope.context.book = $scope.books[book - 1];
+                $scope.context.chapter = parseInt(chapter);
+                $scope.change.chapter();
             }
         };
 
