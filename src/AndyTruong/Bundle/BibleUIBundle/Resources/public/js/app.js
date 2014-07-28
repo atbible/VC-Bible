@@ -57,7 +57,21 @@
                 keywords: '',
                 results: []
             };
-            $('#bibleSearchForm').dialog({position: {my: 'center top-250'}, minWidth: 450, minHeight: 250});
+
+            try {
+                $('#bibleSearchForm').dialog('destroy');
+            }
+            catch (e) {
+            }
+
+            // blur from fake widget
+            $('input[type="text"]').blur();
+
+            // Open the dialog
+            $('#bibleSearchForm')
+                    .dialog({position: {my: 'center top-250'}, minWidth: 450, minHeight: 250})
+                    .dialog('open')
+                    .find('input[type="text"]').focus();
         };
 
         $scope.doSearch = function() {
