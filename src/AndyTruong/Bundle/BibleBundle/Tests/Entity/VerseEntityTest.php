@@ -40,15 +40,12 @@ class VerseEntityTest extends EntityTestCase
             'number'      => 1,
             'body'        => 'In the begining, …',
             'notes'       => 'just a test verse!',
-            'translation' => $unserializer->fromArray([
+            'translation' => [
                 'name'     => 'phankhoi',
                 'writing'  => 'Phan Khôi',
-                'language' => $unserializer->fromArray(
-                    ['id' => 'vi', 'name' => 'Vietnamese'], '\AndyTruong\Bundle\CommonBundle\Entity\LanguageEntity'
-                ),
+                'language' => ['id' => 'vi', 'name' => 'Vietnamese'],
                 'notes'    => 'Most stable version in Vietnamese',
-                ], 'AndyTruong\Bundle\CommonBundle\Entity\LanguageEntity')
-            ], 'AndyTruong\Bundle\BibleBundle\Entity\VerseEntity'
+            ]], 'AndyTruong\Bundle\BibleBundle\Entity\VerseEntity'
         );
 
         $this->assertInstanceOf('AndyTruong\Bundle\BibleBundle\Entity\VerseEntity', $verse);
@@ -56,6 +53,9 @@ class VerseEntityTest extends EntityTestCase
         return $verse;
     }
 
+    /**
+     * @group DEBUGGG
+     */
     public function testCreate()
     {
         $stub = $this->getStub();

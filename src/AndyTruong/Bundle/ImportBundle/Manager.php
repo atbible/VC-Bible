@@ -133,10 +133,7 @@ class Manager
         return $unserialize->fromArray([
                 'name'     => $name,
                 'writing'  => $writing,
-                'language' => $unserialize->fromArray([
-                    'id'   => 'vi',
-                    'name' => 'Vietnamese'], 'AndyTruong\Bundle\CommonBundle\Entity\LanguageEntity'
-                )], 'AndyTruong\Bundle\BibleBundle\Entity\TranslationEntity'
+                'language' => ['id' => 'vi', 'name' => 'Vietnamese']], 'AndyTruong\Bundle\BibleBundle\Entity\TranslationEntity'
         );
     }
 
