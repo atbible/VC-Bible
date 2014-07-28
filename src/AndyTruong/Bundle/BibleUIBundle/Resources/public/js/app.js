@@ -31,7 +31,12 @@
 
         // Query for Vsersions
         $scope.versions = ServiceVersions.query(function() {
-            $scope.context.version = $scope.versions[0];
+            for (var version in $scope.versions)
+                if ($scope.input.version === $scope.versions[version].name)
+                    $scope.context.version = $scope.versions[version]
+
+            if (!$scope.context.version)
+                $scope.context.version = $scope.versions[0];
 
             // Query for books
             $scope.books = ServiceBooks.query(function() {
