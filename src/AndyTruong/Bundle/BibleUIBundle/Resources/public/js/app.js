@@ -32,18 +32,18 @@
         // Query for Vsersions
         $scope.versions = ServiceVersions.query(function() {
             $scope.context.version = $scope.versions[0];
-        });
 
-        // Query for books
-        $scope.books = ServiceBooks.query(function() {
-            for (var book in $scope.books)
-                if ($scope.input.book === $scope.books[book][0])
-                    $scope.context.book = $scope.books[book];
+            // Query for books
+            $scope.books = ServiceBooks.query(function() {
+                for (var book in $scope.books)
+                    if ($scope.input.book === $scope.books[book][0])
+                        $scope.context.book = $scope.books[book];
 
-            if (!$scope.context.book)
-                $scope.context.book = $scope.books[0];
+                if (!$scope.context.book)
+                    $scope.context.book = $scope.books[0];
 
-            $scope.change.book($scope.context.chapter);
+                $scope.change.book($scope.context.chapter);
+            });
         });
 
         $scope.openSearchDialog = function() {
