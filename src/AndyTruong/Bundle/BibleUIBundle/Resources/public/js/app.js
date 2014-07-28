@@ -1,14 +1,13 @@
 (function(angular, $) {
     var ctrl_arguments = ['$scope', '$location', 'ServiceVersions', 'ServiceBooks', 'ServiceVerses', 'ServiceFind'];
     ctrl_arguments.push(function($scope, $location, ServiceVersions, ServiceBooks, ServiceVerses, ServiceFind) {
-        $scope.context = $scope.input = {version: null, book: null, chapter: null};
+        $scope.context = $scope.input = {version: null, book: null, chapter: 1};
 
         // Parse input
         var path = $location.path().match(/(\w+)\/(\w+)\/(\w+)/);
         if (path) {
-            $scope.context.version = path[1];
-            $scope.context.book = path[2];
-            $scope.context.chapter = path[3];
+            $scope.input = {version: path[1], book: path[2], chapter: path[3]};
+            $scope.context.chapter = parseInt(path[3]);
         }
 
         // on change callbacks
@@ -16,11 +15,11 @@
             version: function() {
                 $scope.change.chapter();
             },
-            book: function() {
+            book: function(chapter) {
                 $scope.chapters = [];
                 for (var i = 1; i <= $scope.context.book[2]; i++)
                     $scope.chapters.push(i);
-                $scope.context.chapter = 1;
+                $scope.context.chapter = typeof chapter !== 'undefined' ? chapter : 1;
                 $scope.change.chapter();
             },
             chapter: function() {
@@ -37,10 +36,14 @@
 
         // Query for books
         $scope.books = ServiceBooks.query(function() {
+            for (var book in $scope.books)
+                if ($scope.input.book === $scope.books[book][0])
+                    $scope.context.book = $scope.books[book];
+
             if (!$scope.context.book)
                 $scope.context.book = $scope.books[0];
 
-            $scope.change.book();
+            $scope.change.book($scope.context.chapter);
         });
 
         $scope.openSearchDialog = function() {
