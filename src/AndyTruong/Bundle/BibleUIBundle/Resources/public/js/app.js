@@ -1,4 +1,4 @@
-(function(angular, $) {
+(function(angular) {
     var ctrl_arguments = ['$scope', '$location', 'ServiceVersions', 'ServiceBooks', 'ServiceVerses', 'ServiceFind'];
     ctrl_arguments.push(function($scope, $location, ServiceVersions, ServiceBooks, ServiceVerses, ServiceFind) {
         $scope.context = $scope.input = {version: null, book: null, chapter: 1};
@@ -60,31 +60,12 @@
             });
         });
 
-        $scope.openSearchDialog = function() {
-            $scope.search = {
-                version: $scope.context.version.name,
-                keywords: '',
-                results: []
-            };
-
-            try {
-                $('#bibleSearchForm').dialog('destroy');
-            }
-            catch (e) {
-            }
-
-            // blur from fake widget
-            $('input[type="text"]').blur();
-
-            // Open the dialog
-            $('#bibleSearchForm')
-                    .dialog({position: {my: 'center top-250'}, minWidth: 450, minHeight: 250})
-                    .dialog('open')
-                    .find('input[type="text"]').focus();
+        $scope.doSearch = function() {
+            $scope.search_results = ServiceFind.query({version: $scope.context.version.name, keywords: $scope.search.keywords});
         };
 
-        $scope.doSearch = function() {
-            $scope.search.results = ServiceFind.query({version: $scope.search.version, keywords: $scope.search.keywords});
+        $scope.clearSearchResults= function() {
+            $scope.search_results = [];
         };
     });
 
@@ -101,4 +82,4 @@
             })
             .controller('BibleUIController', ctrl_arguments);
 
-})(angular, jQuery);
+})(angular);
