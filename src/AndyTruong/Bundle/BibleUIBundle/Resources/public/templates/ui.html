@@ -52,8 +52,8 @@
                 ng-repeat="verse in verses"
                 ng-attr-class="verse {{verse.highlight && 'highlight'|| ''}}"
                 ng-click="verse.highlight = verse.highlight ? false : true">
-                <sup>{{verse.number}}.</sup>
-                {{verse.body}}
+                    <sup>{{verse.number}}.</sup>
+                    <span ng-bind-html="renderVerseBody(verse.body)"></span>
             </div>
         </div>
     </div>

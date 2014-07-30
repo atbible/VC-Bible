@@ -1,6 +1,6 @@
 (function(angular) {
-    var ctrl_arguments = ['$scope', '$location', 'ServiceVersions', 'ServiceBooks', 'ServiceVerses', 'ServiceFind'];
-    ctrl_arguments.push(function($scope, $location, ServiceVersions, ServiceBooks, ServiceVerses, ServiceFind) {
+    var ctrl_arguments = ['$scope', '$location', 'ServiceVersions', 'ServiceBooks', 'ServiceVerses', 'ServiceFind', '$sce'];
+    ctrl_arguments.push(function($scope, $location, ServiceVersions, ServiceBooks, ServiceVerses, ServiceFind, $sce) {
         $scope.context = $scope.input = {version: null, book: null, chapter: 1};
 
         // Parse input
@@ -64,13 +64,26 @@
             $scope.search_results = ServiceFind.query({version: $scope.context.version.name, keywords: $scope.search.keywords});
         };
 
-        $scope.clearSearchResults= function() {
+        $scope.clearSearchResults = function() {
             $scope.search_results = [];
+        };
+
+        $scope.renderVerseBody = function(body) {
+            // var prefix = ;
+            for (var i in $scope.books)
+                if ($scope.context.book[0] === $scope.books[i][0])
+                    break;
+
+            var prefix = i < 40 ? 'H' : 'G';
+
+            return $sce.trustAsHtml(body
+                    .replace(/\[(\d+)\]/gm, '<span class="strong strong1"><a href="http://studybible.info/strongs/' + prefix + '$1">[$1]</a></span>')
+                    .replace(/\((\d+)\)/gm, '<span class="strong strong2"><a href="http://studybible.info/strongs/' + prefix + '$1">[$1]</a></span></span>'));
         };
     });
 
     angular
-            .module('BibleUI', ['ui.bootstrap', 'BibleUIServices', 'BibleUIDirectives'])
+            .module('BibleUI', ['ui.bootstrap', 'BibleUIServices', 'BibleUIDirectives', 'ngSanitize'])
             .filter('range', function() {
                 return function(input, min, max) {
                     min = parseInt(min); //Make string input int
@@ -78,6 +91,11 @@
                     for (var i = min; i < max; i++)
                         input.push(i);
                     return input;
+                };
+            })
+            .filter('StrongNumber', function() {
+                return function(input) {
+                    return input.replace(/(\[\d+\])/, '<span class="strong strong1">$1</span>');
                 };
             })
             .controller('BibleUIController', ctrl_arguments);

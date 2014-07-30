@@ -40,6 +40,9 @@ a { cursor: pointer; }
 .verse:hover { background: lightyellow; }
 .verse sup { top: 17px; position: relative; }
 .verse sup { display: block; left: -30px; top: 10px; width: 20px; text-align: right; }
+.verse span.strong { font-size: 0.65em; }
+.verse span.strong a { color: green; }
+.verse span.strong.strong2, .verse span.strong.strong2 a { color: blue; }
 .highlight { background: lightyellow; }
 
 .search-results-wrapper { margin-bottom: 15px; }
