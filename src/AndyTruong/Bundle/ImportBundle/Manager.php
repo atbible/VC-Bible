@@ -64,11 +64,6 @@ class Manager
         return reset($response['query']['results']);
     }
 
-    public function isInstalled()
-    {
-
-    }
-
     public function fetchVersions()
     {
         $url = 'http://www.tt2012.thanhkinhvietngu.net/bible/';
@@ -152,6 +147,10 @@ class Manager
         foreach ($this->remoteQuery($queue_item->getUrl(), '//*[@id="bible-verses"]/div') as $row) {
             list($number, $body) = [$row['sup'], array_pop($row)];
 
+            if (is_array($body)) {
+                $body = $body['content'];
+            }
+
             $verse = $this->em
                 ->getRepository('AndyTruong\Bundle\BibleBundle\Entity\VerseEntity')
                 ->findOneBy(['translation' => $translation, 'book' => $book, 'chapter' => $chapter, 'number' => $number]);
@@ -169,8 +168,15 @@ class Manager
             $this->em->persist($verse);
         }
 
-        $this->em->remove($queue_item);
-        $this->em->flush();
+        try {
+            $this->em->remove($queue_item);
+            $this->em->flush();
+        }
+        catch (\Exception $e) {
+            print_r('[ERROR] Failed to import ' . $queue_item->getUrl());
+            $queue_item->setId($queue_item->getId() + 100000);
+            $this->em->flush();
+        }
     }
 
 }
