@@ -4,6 +4,7 @@ namespace AndyTruong\Bundle\ImportBundle;
 
 use AndyTruong\Bundle\BibleBundle\Entity\TranslationEntity;
 use AndyTruong\Bundle\BibleBundle\Entity\VerseEntity;
+use AndyTruong\Bundle\CommonBundle\Entity\LanguageEntity;
 use AndyTruong\Bundle\ImportBundle\Entity\QueueItem;
 use AndyTruong\Serializer\Unserializer;
 use Doctrine\ORM\EntityManager;
@@ -127,7 +128,7 @@ class Manager
         }
 
         if (!$language = $this->em->getRepository('AndyTruong\Bundle\CommonBundle\Entity\LanguageEntity')->findOneBy(['id' => 'vi'])) {
-            $language = ['id' => 'vi', 'name' => 'Vietnamese'];
+            $language = $unserialize->fromArray(['id' => 'vi', 'name' => 'Vietnamese'], 'AndyTruong\Bundle\CommonBundle\Entity\LanguageEntity');
         }
 
         $translation = new TranslationEntity();
