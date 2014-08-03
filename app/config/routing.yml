@@ -1,7 +1,10 @@
-andy_truong_bible_ui:
+andytruong_bible_ui:
     resource: "@AndyTruongBibleUIBundle/Resources/config/routing.yml"
     prefix:   /
 
-andy_truong_bible:
+andytruong_bible:
     resource: "@AndyTruongBibleBundle/Resources/config/routing.yml"
     prefix:   /
+
+andytruong_common:
+    resource: '@AndyTruongCommonBundle/Resources/config/routing.yml'

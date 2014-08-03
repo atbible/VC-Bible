@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<doctrine-mapping xmlns="http://doctrine-project.org/schemas/orm/doctrine-mapping"
+                  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                  xsi:schemaLocation="http://doctrine-project.org/schemas/orm/doctrine-mapping
+                  http://doctrine-project.org/schemas/orm/doctrine-mapping.xsd">
+    <mapped-superclass name="AndyTruong\Bundle\CommonBundle\Entity\LanguageEntity" table="language">
+        <id name="id" type="string" column="id" unique="true" length="8" nullable="false">
+            <generator strategy="AUTO" />
+        </id>
+        <field name="name" column="name" type="string" length="255"  />
+        <field name="weight" type="integer" />
+        <field name="direction" type="smallint" />
+    </mapped-superclass>
+</doctrine-mapping>
