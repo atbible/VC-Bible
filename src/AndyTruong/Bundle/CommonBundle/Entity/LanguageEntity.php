@@ -6,9 +6,6 @@ use Doctrine\ORM\Mapping as ORM;
 
 /**
  * LanguageEntity
- *
- * @ORM\Table(name="language")
- * @ORM\Entity
  */
 class LanguageEntity
 {
@@ -33,22 +30,16 @@ class LanguageEntity
 
     /**
      * @var string
-     *
-     * @ORM\Column(name="name", type="string", length=255)
      */
     private $name;
 
     /**
      * @var integer
-     *
-     * @ORM\Column(name="weight", type="integer")
      */
     private $weight = 0;
 
     /**
      * @var integer
-     *
-     * @ORM\Column(name="direction", type="smallint")
      */
     private $direction = self::DIRECTION_LTR;
 

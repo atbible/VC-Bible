@@ -4,7 +4,7 @@
         "Read more about it at http://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "eacd3b08c93aef96712e6421ca3fa9ca",
+    "hash": "3f8d87d7a3ef05fce2a253424d8093ec",
     "packages": [
         {
             "name": "andytruong/common",
@@ -113,16 +113,16 @@
         },
         {
             "name": "andytruong/serializer",
-            "version": "v0.1.0",
+            "version": "v0.1.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/andytruong/serializer.git",
-                "reference": "6dd4a4a25f50bf91da5a641cc75713ad7a8a6f8f"
+                "reference": "aa8a267c514f286efc0d7077b4c844cda88c7887"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/andytruong/serializer/zipball/6dd4a4a25f50bf91da5a641cc75713ad7a8a6f8f",
-                "reference": "6dd4a4a25f50bf91da5a641cc75713ad7a8a6f8f",
+                "url": "https://api.github.com/repos/andytruong/serializer/zipball/aa8a267c514f286efc0d7077b4c844cda88c7887",
+                "reference": "aa8a267c514f286efc0d7077b4c844cda88c7887",
                 "shasum": ""
             },
             "require": {
@@ -158,7 +158,7 @@
                 "json",
                 "serializer"
             ],
-            "time": "2014-07-15 04:43:41"
+            "time": "2014-08-01 06:54:41"
         },
         {
             "name": "andytruong/yaml",
@@ -839,17 +839,17 @@
         },
         {
             "name": "friendsofsymfony/rest-bundle",
-            "version": "1.4.0",
+            "version": "1.4.1",
             "target-dir": "FOS/RestBundle",
             "source": {
                 "type": "git",
                 "url": "https://github.com/FriendsOfSymfony/FOSRestBundle.git",
-                "reference": "d37f4410e6a97e81c720840b56e35c3a44942723"
+                "reference": "e3a28ebf74724a51a31d6142b002c0c9652f71a4"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/FriendsOfSymfony/FOSRestBundle/zipball/d37f4410e6a97e81c720840b56e35c3a44942723",
-                "reference": "d37f4410e6a97e81c720840b56e35c3a44942723",
+                "url": "https://api.github.com/repos/FriendsOfSymfony/FOSRestBundle/zipball/e3a28ebf74724a51a31d6142b002c0c9652f71a4",
+                "reference": "e3a28ebf74724a51a31d6142b002c0c9652f71a4",
                 "shasum": ""
             },
             "require": {
@@ -914,7 +914,75 @@
             "keywords": [
                 "rest"
             ],
-            "time": "2014-06-04 13:11:41"
+            "time": "2014-07-11 21:09:03"
+        },
+        {
+            "name": "friendsofsymfony/user-bundle",
+            "version": "v1.3.4",
+            "target-dir": "FOS/UserBundle",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/FriendsOfSymfony/FOSUserBundle.git",
+                "reference": "2deeca89551c28ae27c19bad36861d732e69217e"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/FriendsOfSymfony/FOSUserBundle/zipball/2deeca89551c28ae27c19bad36861d732e69217e",
+                "reference": "2deeca89551c28ae27c19bad36861d732e69217e",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.3.2",
+                "symfony/framework-bundle": "~2.1",
+                "symfony/security-bundle": "~2.1"
+            },
+            "require-dev": {
+                "doctrine/doctrine-bundle": "*",
+                "swiftmailer/swiftmailer": "~4.3",
+                "symfony/validator": "~2.1",
+                "symfony/yaml": "~2.1",
+                "twig/twig": "~1.5",
+                "willdurand/propel-typehintable-behavior": "dev-master"
+            },
+            "suggest": {
+                "willdurand/propel-typehintable-behavior": "Needed when using the propel implementation"
+            },
+            "type": "symfony-bundle",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "2.0.x-dev"
+                }
+            },
+            "autoload": {
+                "psr-0": {
+                    "FOS\\UserBundle": ""
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Christophe Coevoet",
+                    "email": "stof@notk.org"
+                },
+                {
+                    "name": "Thibault Duplessis",
+                    "email": "thibault.duplessis@gmail.com",
+                    "homepage": "http://ornicar.github.com"
+                },
+                {
+                    "name": "FriendsOfSymfony Community",
+                    "homepage": "https://github.com/friendsofsymfony/FOSUserBundle/contributors"
+                }
+            ],
+            "description": "Symfony FOSUserBundle",
+            "homepage": "http://friendsofsymfony.github.com",
+            "keywords": [
+                "User management"
+            ],
+            "time": "2014-06-13 14:51:01"
         },
         {
             "name": "incenteev/composer-parameter-handler",
@@ -2290,6 +2358,7 @@
         "andytruong/common": 20,
         "jms/serializer-bundle": 0
     },
+    "prefer-stable": false,
     "platform": {
         "php": ">=5.4.0"
     },
