@@ -14,13 +14,23 @@ class AppKernel extends Kernel
             new Symfony\Bundle\TwigBundle\TwigBundle(),
             new Symfony\Bundle\MonologBundle\MonologBundle(),
             new Symfony\Bundle\SwiftmailerBundle\SwiftmailerBundle(),
-            new Symfony\Bundle\AsseticBundle\AsseticBundle(),
             new Doctrine\Bundle\DoctrineBundle\DoctrineBundle(),
             new Sensio\Bundle\FrameworkExtraBundle\SensioFrameworkExtraBundle(),
-            new FOS\RestBundle\FOSRestBundle(),
-            new JMS\SerializerBundle\JMSSerializerBundle(),
-            new FOS\UserBundle\FOSUserBundle(),
+            // Frontend bundles
+            new Symfony\Bundle\AsseticBundle\AsseticBundle(),
             new Mopa\Bundle\BootstrapBundle\MopaBootstrapBundle(),
+            // User budnle
+            new FOS\RestBundle\FOSRestBundle(),
+            new FOS\UserBundle\FOSUserBundle(),
+            // Admin bundles
+            new JMS\SerializerBundle\JMSSerializerBundle(),
+            new Sonata\CoreBundle\SonataCoreBundle(),
+            new Sonata\BlockBundle\SonataBlockBundle(),
+            new Sonata\jQueryBundle\SonatajQueryBundle(),
+            new Knp\Bundle\MenuBundle\KnpMenuBundle(),
+            new Sonata\DoctrineORMAdminBundle\SonataDoctrineORMAdminBundle(),
+            new Sonata\AdminBundle\SonataAdminBundle(),
+            // Custom bundle
             new AndyTruong\Bundle\BibleBundle\AndyTruongBibleBundle(),
             new AndyTruong\Bundle\CommonBundle\AndyTruongCommonBundle(),
             new AndyTruong\Bundle\ImportBundle\AndyTruongImportBundle(),

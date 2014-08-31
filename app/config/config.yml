@@ -1,6 +1,7 @@
 imports:
     - { resource: parameters.yml }
     - { resource: security.yml }
+    - { resource: @AndyTruongBibleUIBundle/Resources/config/admin.yml }
 
 framework:
     #esi:             ~
@@ -85,3 +86,9 @@ fos_user:
     db_driver: orm # other valid values are 'mongodb', 'couchdb' and 'propel'
     firewall_name: main
     user_class: AndyTruong\Bundle\CommonBundle\Entity\User
+
+sonata_block:
+    default_contexts: [cms]
+    blocks:
+        sonata.admin.block.admin_list:
+            contexts: [admin]

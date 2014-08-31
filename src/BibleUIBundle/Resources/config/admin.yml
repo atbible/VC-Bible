@@ -1,0 +1,11 @@
+services:
+    vcbible.admin.translations:
+        class: 'AndyTruong\Bundle\BibleUIBundle\Admin\TranslationAdmin'
+        tags:
+            - { name: sonata.admin, manager_type: orm, group: "Content", label: "Translations" }
+        arguments:
+            - ~
+            - AndyTruong\Bundle\BibleBundle\Entity\TranslationEntity
+            - ~
+        calls:
+            - [ setTranslationDomain, [BibleUIBundle] ]
