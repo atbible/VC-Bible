@@ -1,0 +1,57 @@
+a { cursor: pointer; }
+
+.bible-ui {
+    font-family: Verdana,Arial,sans-serif;
+    font-size: 1em;
+    margin-top: 65px;
+}
+
+.dropdown.book ul { list-style-type: none; padding-left: 5px; }
+.dropdown.book ul ul { font-size: 0.95em; }
+.dropdown.chapter ul li { float: left; }
+.dropdown.chapter ul li a { display: block; font-size: 0.8em; padding: 0; }
+@media (min-width: 768px) {
+    .dropdown.chapter ul { width: 312px; }
+    .dropdown.chapter ul li a:hover { background: #ddd; }
+    .dropdown.chapter ul li a {
+        width: 25px; height: 20px; margin: 3px; padding-top: 2px; text-align: center;
+        background: #efefef; border: 1px solid darkgray;
+    }
+}
+
+.sidebar { display: none; }
+.reading-area .books    { display: none; }
+.reading-area .chapters { display: none; }
+.reading .reading-area .verses { width: 100%; }
+@media (min-width: 1200px) {
+    .sidebar                { display: block; width: 320px; }
+    .reading-area .books    { display: block; width: 200px; }
+    .reading-area .chapters { display: block; width: 120px; }
+    .reading .reading-area .verses   { display: block; width: 765px; margin-top: -10px; }
+}
+
+.searching .sidebar { display: block; }
+.searching .reading-area .verses { display: block; }
+
+.h-nav { margin: 0; padding: 0; list-style-type: none; font-size: 0.9em; }
+.h-nav a.active { font-weight: bold; }
+
+.verse { margin: 10px 15px; }
+.verse:hover { background: lightyellow; }
+.verse sup { top: 17px; position: relative; }
+.verse sup { display: block; left: -30px; top: 10px; width: 20px; text-align: right; }
+.verse span.strong { font-size: 0.65em; }
+.verse span.strong a { color: green; }
+.verse span.strong.strong2, .verse span.strong.strong2 a { color: blue; }
+.highlight { background: lightyellow; }
+
+.search-results-wrapper { margin-bottom: 15px; }
+.search-results-wrapper button.btn-link { display: block; float: right; }
+.search-results { max-height: 650px; overflow: auto; }
+.search-results blockquote { font-size: 0.9em; }
+.search-results blockquote cite { color: #aaa; font-style: italic; }
+
+.footer {
+    padding-top: 40px; padding-bottom: 40px; margin-top: 100px; text-align: center;
+    color: #777; border-top: 1px solid #e5e5e5;
+}

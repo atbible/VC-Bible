@@ -1,3 +1,0 @@
-atbible_restful:
-    type:     rest
-    resource: atbible.controller.restful
