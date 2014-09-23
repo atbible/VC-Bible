@@ -1,7 +1,0 @@
-parameters:
-#    andy_truong_bible_ui.example.class: AndyTruong\Bundle\BibleUIBundle\Example
-
-services:
-#    andy_truong_bible_ui.example:
-#        class: %andy_truong_bible_ui.example.class%
-#        arguments: [@service_id, "plain_value", %parameter%]
