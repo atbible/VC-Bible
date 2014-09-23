@@ -1,6 +1,6 @@
 <?php
 
-namespace AndyTruong\Bundle\BibleBundle\Entity;
+namespace AndyTruong\Bible\Entity;
 
 use AndyTruong\Bundle\CommonBundle\Entity\LanguageEntity;
 use Doctrine\ORM\Mapping as ORM;

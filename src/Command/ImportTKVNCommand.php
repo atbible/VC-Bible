@@ -1,9 +1,9 @@
 <?php
 
-namespace AndyTruong\Bundle\ImportBundle\Command;
+namespace AndyTruong\Bible\Command;
 
-use AndyTruong\App\Command;
 use AndyTruong\Bundle\ImportBundle\Helper\ImportHelper;
+use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Input\InputOption;
 use Symfony\Component\Console\Output\OutputInterface;

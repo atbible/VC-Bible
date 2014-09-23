@@ -1,6 +1,6 @@
 <?php
 
-namespace AndyTruong\Bundle\BibleBundle\Controller;
+namespace AndyTruong\Bible\Controller;
 
 use AndyTruong\Bible\Application;
 use Doctrine\ORM\EntityManagerInterface;

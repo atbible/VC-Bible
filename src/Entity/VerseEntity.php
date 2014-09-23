@@ -1,7 +1,8 @@
 <?php
 
-namespace AndyTruong\Bundle\BibleBundle\Entity;
+namespace AndyTruong\Bible\Entity;
 
+use AndyTruong\Bible\Entity\TranslationEntity;
 use Doctrine\ORM\Mapping as ORM;
 
 /**

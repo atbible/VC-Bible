@@ -1,6 +1,6 @@
 <?php
 
-namespace AndyTruong\Bundle\ImportBundle\Entity;
+namespace AndyTruong\Bible\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 

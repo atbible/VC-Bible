@@ -1,16 +1,16 @@
 <?php
 
-namespace AndyTruong\Bundle\BibleBundle\Tests\Entity;
+namespace AndyTruong\Bible\Testcase;
 
 use AndyTruong\Bundle\BibleBundle\Entity\VerseEntity;
-use AndyTruong\Bundle\CommonBundle\Tests\Entity\EntityTestCase;
 use AndyTruong\Serializer\Unserializer;
 use Doctrine\ORM\EntityManagerInterface;
+use PHPUnit_Framework_TestCase;
 
 /**
  * @group vcbible
  */
-class VerseEntityTest extends EntityTestCase
+class VerseEntityTest extends PHPUnit_Framework_TestCase
 {
 
     /**

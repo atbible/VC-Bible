@@ -1,6 +1,6 @@
 <?php
 
-namespace AndyTruong\Bundle\BibleBundle\Entity;
+namespace AndyTruong\Bible\Entity;
 
 use Doctrine\ORM\EntityRepository;
 
@@ -12,4 +12,5 @@ use Doctrine\ORM\EntityRepository;
  */
 class VerseRepository extends EntityRepository
 {
+
 }

@@ -1,6 +1,6 @@
 <?php
 
-namespace AndyTruong\Bundle\ImportBundle\Helper;
+namespace AndyTruong\Bible\Helper;
 
 use AndyTruong\Bundle\BibleBundle\Entity\TranslationEntity;
 use AndyTruong\Bundle\BibleBundle\Entity\VerseEntity;
