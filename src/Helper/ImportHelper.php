@@ -1,6 +1,6 @@
 <?php
 
-namespace AndyTruong\Bundle\ImportBundle;
+namespace AndyTruong\Bundle\ImportBundle\Helper;
 
 use AndyTruong\Bundle\BibleBundle\Entity\TranslationEntity;
 use AndyTruong\Bundle\BibleBundle\Entity\VerseEntity;
@@ -11,7 +11,7 @@ use Doctrine\ORM\EntityRepository;
 use RuntimeException;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 
-class ImportManager
+class ImportHelper
 {
 
     /**
