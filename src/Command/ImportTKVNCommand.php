@@ -2,16 +2,14 @@
 
 namespace AndyTruong\Bundle\ImportBundle\Command;
 
-use AndyTruong\Bundle\ImportBundle\ImportManager;
-use Symfony\Bundle\FrameworkBundle\Command\ContainerAwareCommand;
+use AndyTruong\App\Command;
+use AndyTruong\Bundle\ImportBundle\Helper\ImportHelper;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Input\InputOption;
 use Symfony\Component\Console\Output\OutputInterface;
 
-class ImportTKVNCommand extends ContainerAwareCommand
+class ImportTKVNCommand extends Command
 {
-
-    private $installer;
 
     protected function configure()
     {
@@ -26,7 +24,7 @@ class ImportTKVNCommand extends ContainerAwareCommand
     protected function execute(InputInterface $input, OutputInterface $output)
     {
         $limit = (int) $input->getOption('limit');
-        $manager = new ImportManager($this->getContainer());
+        $manager = new ImportHelper($this->getContainer());
 
         if ($restart = (bool) $input->getOption('restart')) {
             $manager->generateQueueItems();
