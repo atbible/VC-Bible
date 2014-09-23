@@ -2,35 +2,27 @@
 
 namespace AndyTruong\Bundle\BibleBundle\Controller;
 
+use AndyTruong\Bible\Application;
 use Doctrine\ORM\EntityManagerInterface;
-use FOS\RestBundle\Controller\Annotations\Get;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\Cache;
+use Doctrine\ORM\Query;
 
-/**
- * @Cache(expires="+ 1 month", public=true)
- */
 class RestfulController
 {
 
-    /**
-     * Entity manager.
-     *
-     * @var EntityManagerInterface
-     */
+    /** @var Application */
+    private $app;
+
+    /** @var EntityManagerInterface Entity manager. */
     private $em;
 
-    /**
-     * Constructor.
-     *
-     * @param EntityManagerInterface $em
-     */
-    public function __construct(EntityManagerInterface $em)
+    public function __construct(Application $app)
     {
-        $this->em = $em;
+        $this->app = $app;
+        $this->em = $app->getEntityManager();
     }
 
     /**
-     * @Get("/versions")
+     * @url GET /versions
      */
     public function getVersionsAction()
     {
@@ -41,12 +33,11 @@ class RestfulController
     }
 
     /**
-     * @Get("/books")
-     * @return array
+     * @url GET /books
      */
     public function getBooksAction()
     {
-        return (require dirname(__DIR__) . '/Resources/info/books.php');
+        return $this->app->configGet(null, 'books');
     }
 
     /**
@@ -90,13 +81,13 @@ class RestfulController
     /**
      * Full text search.
      *
-     * @Get("/find/{translation}/{keywords}")
+     * @url GET /find/{translation}/{keywords}
      * @param string $translation
      * @param string $keywords
      */
     public function findAction($translation, $keywords)
     {
-        /* @var $query \Doctrine\ORM\Query  */
+        /* @var $query Query  */
         $query = $this->em->createQuery(
             "SELECT v.book, v.chapter, v.number, v.body"
             . " FROM AndyTruong\Bundle\BibleBundle\Entity\VerseEntity v"
