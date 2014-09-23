@@ -1,0 +1,5 @@
+{
+    "AndyTruong\\Bundle\\BibleBundle\\Controller": {
+        "prefix": "/bible"
+    }
+}
