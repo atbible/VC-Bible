@@ -10,10 +10,6 @@
     },
     "require": {
         "php": ">=5.4.0",
-        "doctrine/orm": "~2.2,>=2.2.3",
-        "twig/extensions": "~1.0",
-        "andytruong/common": "~0.1.0"
-    },
-    "config": {},
-    "extra": {}
+        "andytruong/app": "0.1.*@dev"
+    }
 }
