@@ -22,18 +22,18 @@ class ReadingController
     }
 
     /**
-     * @url GET /versions
+     * @url GET /bible/versions
      */
     public function getVersionsAction()
     {
         return $this->em
-                ->getRepository('AndyTruong\Bundle\BibleBundle\Entity\TranslationEntity')
+                ->getRepository('AndyTruong\Bible\Entity\TranslationEntity')
                 ->findAll()
         ;
     }
 
     /**
-     * @url GET /books
+     * @url GET /bible/books
      */
     public function getBooksAction()
     {
@@ -41,7 +41,7 @@ class ReadingController
     }
 
     /**
-     * @url GET /{translation}/{book}/{chapter_number}
+     * @url GET /bible/{translation}/{book}/{chapter_number}
      * @param string $translation
      * @param string $book
      * @param int $chapter_number
@@ -65,7 +65,7 @@ class ReadingController
 
         $query = $this->em->createQuery(
             "SELECT v.book, v.chapter, v.number, v.body"
-            . " FROM AndyTruong\Bundle\BibleBundle\Entity\VerseEntity v"
+            . " FROM AndyTruong\Bible\Entity\VerseEntity v"
             . "     JOIN v.translation t"
             . " WHERE t.name = :translation AND v.book = :book AND v.chapter = :chapter"
             . " ORDER BY v.number"
@@ -81,7 +81,7 @@ class ReadingController
     /**
      * Full text search.
      *
-     * @url GET /find/{translation}/{keywords}
+     * @url GET /bible/find/{translation}/{keywords}
      * @param string $translation
      * @param string $keywords
      */
@@ -90,7 +90,7 @@ class ReadingController
         /* @var $query Query  */
         $query = $this->em->createQuery(
             "SELECT v.book, v.chapter, v.number, v.body"
-            . " FROM AndyTruong\Bundle\BibleBundle\Entity\VerseEntity v"
+            . " FROM AndyTruong\Bible\Entity\VerseEntity v"
             . "     JOIN v.translation t"
             . " WHERE t.name = :translation AND v.body LIKE :keywords"
             . " ORDER BY v.book, v.chapter, v.number"

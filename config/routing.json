@@ -1,5 +1,5 @@
 {
     "AndyTruong\\Bible\\Controller\\ReadingController": {
-        "prefix": "/bible"
+        "prefix": "/"
     }
 }
