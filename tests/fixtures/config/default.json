@@ -1,0 +1,10 @@
+{
+    "doctrine": {
+        "dbal": {
+            "default": {}
+        },
+        "em": {
+            "default": {}
+        }
+    }
+}

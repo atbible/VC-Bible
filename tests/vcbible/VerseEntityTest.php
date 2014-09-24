@@ -2,30 +2,35 @@
 
 namespace AndyTruong\Bible\Testcase;
 
-use AndyTruong\Bundle\BibleBundle\Entity\VerseEntity;
+use AndyTruong\Bible\Application;
+use AndyTruong\Bible\Entity\VerseEntity;
 use AndyTruong\Serializer\Unserializer;
 use Doctrine\ORM\EntityManagerInterface;
 use PHPUnit_Framework_TestCase;
 
-/**
- * @group vcbible
- */
 class VerseEntityTest extends PHPUnit_Framework_TestCase
 {
 
-    /**
-     * @var EntityManagerInterface
-     */
-    protected $em;
+    /** @var Application */
+    private $app;
+
+    /** @var EntityManagerInterface */
+    private $em;
 
     /**
      * @var string
      */
     protected $class_names = [
-        'AndyTruong\Bundle\BibleBundle\Entity\VerseEntity',
-        'AndyTruong\Bundle\BibleBundle\Entity\TranslationEntity',
-        'AndyTruong\Bundle\CommonBundle\Entity\LanguageEntity'
+        'AndyTruong\Bible\Entity\VerseEntity',
+        'AndyTruong\Bible\Entity\TranslationEntity',
+        '\AndyTruong\App\Entity\LanguageEntity'
     ];
+
+    protected function setUp()
+    {
+        parent::setUp();
+        $this->app = new Application(dirname(__DIR__) . '/fixtures');
+    }
 
     /**
      * @return VerseEntity
@@ -45,17 +50,14 @@ class VerseEntityTest extends PHPUnit_Framework_TestCase
                 'writing'  => 'Phan Khôi',
                 'language' => ['id' => 'vi', 'name' => 'Vietnamese'],
                 'notes'    => 'Most stable version in Vietnamese',
-            ]], 'AndyTruong\Bundle\BibleBundle\Entity\VerseEntity'
+            ]], 'AndyTruong\Bible\Entity\VerseEntity'
         );
 
-        $this->assertInstanceOf('AndyTruong\Bundle\BibleBundle\Entity\VerseEntity', $verse);
+        $this->assertInstanceOf('AndyTruong\Bible\Entity\VerseEntity', $verse);
 
         return $verse;
     }
 
-    /**
-     * @group DEBUGGG
-     */
     public function testCreate()
     {
         $stub = $this->getStub();
@@ -74,7 +76,7 @@ class VerseEntityTest extends PHPUnit_Framework_TestCase
         $stub = $this->testCreate();
 
         $verse = $this->em
-            ->getRepository('AndyTruong\Bundle\BibleBundle\Entity\VerseEntity')
+            ->getRepository('AndyTruong\Bible\Entity\VerseEntity')
             ->find($stub->getId())
         ;
 
@@ -89,7 +91,7 @@ class VerseEntityTest extends PHPUnit_Framework_TestCase
         $verse->setNotes($verse->getNotes() . ' [updated]');
 
         $updated_verse = $this->em
-            ->getRepository('AndyTruong\Bundle\BibleBundle\Entity\VerseEntity')
+            ->getRepository('AndyTruong\Bible\Entity\VerseEntity')
             ->find($verse->getId())
         ;
 
