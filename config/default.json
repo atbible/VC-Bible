@@ -2,20 +2,12 @@
     "doctrine": {
         "dbal": {
             "default": {
-                "database_driver": "pdo_sqlite",
-                "database_path": "/Users/andy/git/vcbible/var/db.dev.sqlite"
+                "driver": "pdo_sqlite",
+                "path": "/Users/andy/git/vcbible/var/db.dev.sqlite"
             }
         },
         "em": {
-            "default": {
-                "mappings": [
-                    {
-                        "type": "annotation",
-                        "namespace": "AndyTruong\\Bundle\\ImportBundle\\Entity\\QueueItem",
-                        "path": "%appDir%/src/Entity"
-                    }
-                ]
-            }
+            "default": {}
         }
     }
 }
