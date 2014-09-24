@@ -6,7 +6,7 @@ use AndyTruong\Bible\Application;
 use Doctrine\ORM\EntityManagerInterface;
 use Doctrine\ORM\Query;
 
-class RestfulController
+class ReadingController
 {
 
     /** @var Application */
@@ -41,7 +41,7 @@ class RestfulController
     }
 
     /**
-     * @Get("/{translation}/{book}/{chapter_number}")
+     * @url GET /{translation}/{book}/{chapter_number}
      * @param string $translation
      * @param string $book
      * @param int $chapter_number
