@@ -2,22 +2,27 @@
 
 namespace AndyTruong\Bible\Entity;
 
-use AndyTruong\Bundle\CommonBundle\Entity\LanguageEntity;
-use Doctrine\ORM\Mapping as ORM;
+use AndyTruong\App\Entity\LanguageEntity;
+use AndyTruong\Bible\Entity\TranslationEntity;
+use Doctrine\ORM\Mapping\Entity;
+use Doctrine\ORM\Mapping\GeneratedValue;
+use Doctrine\ORM\Mapping\Id;
+use Doctrine\ORM\Mapping\ManyToOne;
+use Doctrine\ORM\Mapping\Table;
 
 /**
  * Translation
  *
- * @ORM\Table(name="translation")
- * @ORM\Entity
+ * @Table(name="translation")
+ * @Entity
  */
 class TranslationEntity
 {
 
     /**
-     * @ORM\Column(name="id", type="integer")
-     * @ORM\Id
-     * @ORM\GeneratedValue(strategy="AUTO")
+     * @Column(name="id", type="integer")
+     * @Id
+     * @GeneratedValue(strategy="AUTO")
      * @var int
      */
     private $id;
@@ -25,19 +30,19 @@ class TranslationEntity
     /**
      * @var string
      *
-     * @ORM\Column(name="name", type="string", length=255)
+     * @Column(name="name", type="string", length=255)
      */
     private $name;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="writing", type="string", length=255)
+     * @Column(name="writing", type="string", length=255)
      */
     private $writing;
 
     /**
-     * @ORM\ManyToOne(targetEntity="AndyTruong\Bundle\CommonBundle\Entity\LanguageEntity", cascade={"all"}, fetch="LAZY")
+     * @ManyToOne(targetEntity="AndyTruong\App\Entity\LanguageEntity", cascade={"all"}, fetch="LAZY")
      * @var LanguageEntity
      */
     private $language;
@@ -45,7 +50,7 @@ class TranslationEntity
     /**
      * @var string
      *
-     * @ORM\Column(name="notes", type="text", nullable=true)
+     * @Column(name="notes", type="text", nullable=true)
      */
     private $notes;
 

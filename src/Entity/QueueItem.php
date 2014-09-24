@@ -2,13 +2,17 @@
 
 namespace AndyTruong\Bible\Entity;
 
-use Doctrine\ORM\Mapping as ORM;
+use AndyTruong\Bible\Entity\QueueItem;
+use Doctrine\ORM\Mapping\Entity;
+use Doctrine\ORM\Mapping\GeneratedValue;
+use Doctrine\ORM\Mapping\Id;
+use Doctrine\ORM\Mapping\Table;
 
 /**
  * QueueItem
  *
- * @ORM\Table(name="vcbible_import_queue")
- * @ORM\Entity
+ * @Table(name="vcbible_import_queue")
+ * @Entity
  */
 class QueueItem
 {
@@ -16,30 +20,30 @@ class QueueItem
     /**
      * @var integer
      *
-     * @ORM\Column(name="id", type="integer")
-     * @ORM\Id
-     * @ORM\GeneratedValue(strategy="AUTO")
+     * @Column(name="id", type="integer")
+     * @Id
+     * @GeneratedValue(strategy="AUTO")
      */
     private $id;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="description", type="text")
+     * @Column(name="description", type="text")
      */
     private $description;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="url", type="string", length=255)
+     * @Column(name="url", type="string", length=255)
      */
     private $url;
 
     /**
      * @var array
      *
-     * @ORM\Column(type="json_array", nullable=true)
+     * @Column(type="json_array", nullable=true)
      */
     private $data;
 

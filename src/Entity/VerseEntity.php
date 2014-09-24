@@ -3,58 +3,61 @@
 namespace AndyTruong\Bible\Entity;
 
 use AndyTruong\Bible\Entity\TranslationEntity;
-use Doctrine\ORM\Mapping as ORM;
+use Doctrine\ORM\Mapping\GeneratedValue;
+use Doctrine\ORM\Mapping\Id;
+use Doctrine\ORM\Mapping\ManyToOne;
+use Doctrine\ORM\Mapping\Table;
 
 /**
  * Verse
  *
- * @ORM\Table(name="verse")
- * @ORM\Entity(repositoryClass="VerseRepository")
+ * @Table(name="verse")
+ * @Entity()
  */
 class VerseEntity
 {
 
     /**
-     * @ORM\Column(name="id", type="integer")
-     * @ORM\Id
-     * @ORM\GeneratedValue(strategy="AUTO")
+     * @Column(name="id", type="integer")
+     * @Id
+     * @GeneratedValue(strategy="AUTO")
      * @var int
      */
     private $id;
 
     /**
      * @var integer
-     * @ORM\Column(name="number", type="integer")
+     * @Column(name="number", type="integer")
      */
     private $number;
 
     /**
-     * @ORM\ManyToOne(targetEntity="TranslationEntity", cascade={"all"}, fetch="LAZY")
+     * @ManyToOne(targetEntity="TranslationEntity", cascade={"all"}, fetch="LAZY")
      * @var TranslationEntity
      */
     private $translation;
 
     /**
      * @var integer
-     * @ORM\Column(name="book", type="integer")
+     * @Column(name="book", type="integer")
      */
     private $book;
 
     /**
      * @var integer
-     * @ORM\Column(name="chapter", type="integer")
+     * @Column(name="chapter", type="integer")
      */
     private $chapter;
 
     /**
      * @var string
-     * @ORM\Column(name="body", type="text")
+     * @Column(name="body", type="text")
      */
     private $body;
 
     /**
      * @var string
-     * @ORM\Column(name="notes", type="text", nullable=true)
+     * @Column(name="notes", type="text", nullable=true)
      */
     private $notes;
 
