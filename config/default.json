@@ -7,8 +7,10 @@
             }
         },
         "em": {
-            "default": {
-            }
+            "default": {}
         }
+    },
+    "restler": {
+        "formats": ["JsonFormat", "HtmlFormat"]
     }
 }
