@@ -1,7 +1,10 @@
 {
     "doctrine": {
         "dbal": {
-            "default": {}
+            "default": {
+                "driver": "pdo_sqlite",
+                "path": "%appDir%/../../files/testing/db.sqlite"
+            }
         },
         "em": {
             "default": {}

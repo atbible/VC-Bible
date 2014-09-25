@@ -3,7 +3,7 @@
         "dbal": {
             "default": {
                 "driver": "pdo_sqlite",
-                "path": "/Users/andy/git/vcbible/var/db.dev.sqlite"
+                "path": "%appDir%/files/db/dev.sqlite"
             }
         },
         "em": {

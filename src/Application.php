@@ -7,9 +7,9 @@ use AndyTruong\App\Application as BaseApplication;
 class Application extends BaseApplication
 {
 
-    public function __construct()
+    public function __construct($appDir = null)
     {
-        parent::__construct(dirname(__DIR__));
+        parent::__construct(null === $appDir ? dirname(__DIR__) : $appDir);
     }
 
 }

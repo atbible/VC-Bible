@@ -30,6 +30,7 @@ class VerseEntityTest extends PHPUnit_Framework_TestCase
     {
         parent::setUp();
         $this->app = new Application(dirname(__DIR__) . '/fixtures');
+        $this->em = $this->app->getEntityManager();
     }
 
     /**
