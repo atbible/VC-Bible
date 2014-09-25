@@ -22,6 +22,15 @@ class ReadingController
     }
 
     /**
+     * @url GET /
+     * @view bible/index.php
+     */
+    public function getHome()
+    {
+        return [];
+    }
+
+    /**
      * @url GET /bible/versions
      */
     public function getVersionsAction()
