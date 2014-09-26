@@ -1,0 +1,60 @@
+<div id="bible-ui" ng-attr-class="{{search_results.length && 'searching'|| 'reading'}}">
+    <div class="reading-area row">
+        <div class="sidebar col-xs-12 col-sm-5 col-md-4">
+            <div class="row">
+                <div class="search-results-wrapper" ng-if="search_results.length">
+                    <button class="btn-xs btn-link" ng-click="clearSearchResults()">
+                        <span class="glyphicon glyphicon-remove"></span>
+                    </button>
+
+                    <h4>Search results</h4>
+                    <div class="search-results">
+                        <div ng-repeat="result in search_results">
+                            <blockquote>{{result.body}}
+                                <cite>
+                                    — <a
+                                        ng-click="change.search_results(context.version.name, result.book, result.chapter)"
+                                        href="#/{{context.version.name}}/{{books[result.book - 1][0]}}/{{result.chapter}}">
+                                        {{books[result.book - 1][1]}} {{result.chapter}}:{{result.number}}
+                                    </a>
+                                </cite>
+                            </blockquote>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="books col-sm-1 col-md-1 col-xs-1">
+                    <ul class="h-nav">
+                        <li ng-repeat="book in books">
+                            <a
+                                ng-attr-class="{{book[1] == context.book[1] && 'active'|| ''}}"
+                                ng-click="context.book = book;
+                                        change.book();">{{book[1]}}</a>
+                        </li>
+                    </ul>
+                </div>
+                <div class="chapters col-sm-1 col-md-1 col-xs-1">
+                    <ul class="h-nav">
+                        <li ng-repeat="chapter in chapters">
+                            <a
+                                ng-attr-class="{{chapter == context.chapter && 'active'|| ''}}"
+                                href ng-click="context.chapter = chapter;
+                                        change.chapter();">Chương {{chapter}}</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="verses col-xs-12 col-sm-7 col-md-8">
+            <div
+                ng-repeat="verse in verses"
+                ng-attr-class="verse {{verse.highlight && 'highlight'|| ''}}"
+                ng-click="verse.highlight = verse.highlight ? false : true">
+                    <sup>{{verse.number}}.</sup>
+                    <span ng-bind-html="renderVerseBody(verse.body)"></span>
+            </div>
+        </div>
+    </div>
+</div>

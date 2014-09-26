@@ -1,0 +1,15 @@
+{
+    "name": "andytruong/vcbible",
+    "license": "MIT",
+    "type": "project",
+    "description": "Application reading application",
+    "autoload": {
+        "psr-4": {
+            "AndyTruong\\Bible\\": "src/"
+        }
+    },
+    "require": {
+        "php": ">=5.4.0",
+        "andytruong/app": "0.1.*@dev"
+    }
+}
