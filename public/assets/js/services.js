@@ -1,31 +1,31 @@
-(function(angular) {
+(function (angular) {
 
     angular
             .module('BibleUIServices', ['ngResource'])
-            .value('baseURL', '/')
-            .factory('ServiceVersions', ['$resource', function($resource) {
-                    return $resource('/versions.json', {}, {
+            .value('baseURL', '/index.php/bible')
+            .factory('ServiceVersions', ['$resource', 'baseURL', function ($resource, baseURL) {
+                    return $resource(baseURL + '/versions.json', {}, {
                         query: {method: 'GET', isArray: true}
                     });
                 }])
-            .factory('ServiceBooks', ['$resource', function($resource) {
-                    return $resource('/books.json', {}, {
+            .factory('ServiceBooks', ['$resource', 'baseURL', function ($resource, baseURL) {
+                    return $resource(baseURL + '/books.json', {}, {
                         query: {method: 'GET', isArray: true}
                     });
                 }])
-            .factory('ServiceVerses', ['$resource', function($resource) {
+            .factory('ServiceVerses', ['$resource', 'baseURL', function ($resource, baseURL) {
                     var params = {
                         ':version': '@version',
                         ':book': '@book',
                         ':chapter': '@chapter'
                     };
 
-                    return $resource('/:version/:book/:chapter.json', params, {
+                    return $resource(baseURL + '/:version/:book/:chapter.json', params, {
                         query: {method: 'GET', isArray: true}
                     });
                 }])
-            .factory('ServiceFind', ['$resource', function($resource) {
-                    return $resource('/find/:version/:keywords', {}, {
+            .factory('ServiceFind', ['$resource', 'baseURL', function ($resource, baseURL) {
+                    return $resource(baseURL + '/find/:version/:keywords', {}, {
                         query: {method: 'GET', isArray: true}
                     });
                 }])
