@@ -2,9 +2,10 @@
 
 namespace AndyTruong\Bible\Helper;
 
+use AndyTruong\Bible\Application;
+use AndyTruong\Bible\Entity\QueueItem;
 use AndyTruong\Bundle\BibleBundle\Entity\TranslationEntity;
 use AndyTruong\Bundle\BibleBundle\Entity\VerseEntity;
-use AndyTruong\Bundle\ImportBundle\Entity\QueueItem;
 use AndyTruong\Serializer\Unserializer;
 use Doctrine\ORM\EntityManager;
 use Doctrine\ORM\EntityRepository;
@@ -14,36 +15,37 @@ use Symfony\Component\DependencyInjection\ContainerInterface;
 class ImportHelper
 {
 
-    /**
-     * Container.
-     *
-     * @var ContainerInterface
-     */
-    private $container;
+    /** @var ContainerInterface  */
+    private $app;
 
-    /**
-     * Entity manager
-     *
-     * @var EntityManager
-     */
+    /** @var EntityManager Entity manager */
     private $em;
 
-    /**
-     * Yahoo Query.
-     *
-     * @var string
-     */
-    private $yql_url = 'http://query.yahooapis.com/v1/public/yql';
+    /** @var string Yahoo Query. */
+    private $yqlUrl = 'http://query.yahooapis.com/v1/public/yql';
 
-    /**
-     * Constructor
-     *
-     * @param ContainerInterface $container
-     */
-    public function __construct(ContainerInterface $container)
+    /** @var string */
+    private $resourceUrl = 'http://www.tt2012.thanhkinhvietngu.net/bible';
+
+    /** @var string */
+    private $xpathTranslations = '//*[@id="bible-navigation-versions"]/li/a';
+
+    /** @var string */
+    private $queueItemClassName = 'AndyTruong\Bible\Entity\QueueItem';
+
+    /** @var string */
+    private $languageClassName = 'AndyTruong\App\Entity\LanguageEntity';
+
+    /** @var string */
+    private $translationClassName = 'AndyTruong\Bible\Entity\TranslationEntity';
+
+    /** @var string */
+    private $verseClassName = 'AndyTruong\Bible\Entity\VerseEntity';
+
+    public function __construct(Application $app)
     {
-        $this->container = $container;
-        $this->em = $this->container->get('doctrine.orm.entity_manager');
+        $this->app = $app;
+        $this->em = $this->app->getEntityManager();
     }
 
     /**
@@ -55,7 +57,7 @@ class ImportHelper
     private function remoteQuery($url, $xpath)
     {
         $sql = "SELECT * FROM html WHERE url = '{$url}' AND xpath = '$xpath'";
-        $path = $this->yql_url . '?format=json&q=' . urlencode($sql);
+        $path = $this->yqlUrl . '?format=json&q=' . urlencode($sql);
         $response = json_decode(file_get_contents($path), true);
         if (empty($response['query']['results'])) {
             print_r($response);
@@ -66,9 +68,7 @@ class ImportHelper
 
     public function fetchVersions()
     {
-        $url = 'http://www.tt2012.thanhkinhvietngu.net/bible/';
-        $xpath = '//*[@id="bible-navigation-versions"]/li/a';
-        foreach ($this->remoteQuery($url, $xpath) as $row) {
+        foreach ($this->remoteQuery($this->resourceUrl, $this->xpathTranslations) as $row) {
             $versions[] = array(
                 'id'   => preg_replace('`^/bible/([^/]+).+$`', '$1', $row['href']),
                 'name' => $row['content'],
@@ -80,22 +80,21 @@ class ImportHelper
     public function generateQueueItems()
     {
         $unserialize = new Unserializer();
-        $books = require dirname(__DIR__) . '/BibleBundle/Resources/info/books.php';
+        $books = $this->app->configGet(null, 'books');
         foreach ($this->fetchVersions() as $version) {
-            foreach ($books as $book_number => $book) {
-                $book_number = $book_number + 1;
-                for ($chapter_number = 1; $chapter_number <= $book[2]; $chapter_number++) {
-                    $queue_item = $unserialize->fromArray([
-                        'description' => "{$version['name']} {$book_number}:{$chapter_number}",
-                        'url'         => "http://www.tt2012.thanhkinhvietngu.net/bible/{$version['id']}/{$book_number}/{$chapter_number}",
+            foreach ($books as $bookNumber => $book) {
+                $bookNumber = $bookNumber + 1;
+                for ($chapterNumber = 1; $chapterNumber <= $book[2]; $chapterNumber++) {
+                    $queueItem = $unserialize->fromArray([
+                        'description' => "{$version['name']} {$bookNumber}:{$chapterNumber}",
+                        'url'         => "{$this->resourceUrl}/{$version['id']}/{$bookNumber}/{$chapterNumber}",
                         'data'        => [
                             'version' => $version,
-                            'book'    => $book_number,
-                            'chapter' => $chapter_number
-                        ]], 'AndyTruong\Bundle\ImportBundle\Entity\QueueItem'
+                            'book'    => $bookNumber,
+                            'chapter' => $chapterNumber
+                        ]], $this->queueItemClassName
                     );
-
-                    $this->em->persist($queue_item);
+                    $this->em->persist($queueItem);
                 }
             }
             $this->em->flush();
@@ -109,7 +108,7 @@ class ImportHelper
     {
         /* @var $repository EntityRepository */
         return $this->em
-                ->getRepository('AndyTruong\Bundle\ImportBundle\Entity\QueueItem')
+                ->getRepository($this->queueItemClassName)
                 ->findOneBy([], ['id' => 'ASC'])
         ;
     }
@@ -119,43 +118,47 @@ class ImportHelper
         $unserialize = new Unserializer();
 
         $translation = $this->em
-            ->getRepository('AndyTruong\Bundle\BibleBundle\Entity\TranslationEntity')
+            ->getRepository($this->translationClassName)
             ->findOneBy(['name' => $name, 'writing' => $writing]);
 
         if ($translation) {
             return $translation;
         }
 
-        if (!$language = $this->em->getRepository('AndyTruong\Bundle\CommonBundle\Entity\LanguageEntity')->findOneBy(['id' => 'vi'])) {
-            $language = $unserialize->fromArray(['id' => 'vi', 'name' => 'Vietnamese'], 'AndyTruong\Bundle\CommonBundle\Entity\LanguageEntity');
+        if (!$language = $this->em->getRepository($this->languageClassName)->findOneBy(['id' => 'vi'])) {
+            $language = $unserialize->fromArray(['id' => 'vi', 'name' => 'Vietnamese'], $this->languageClassName);
         }
 
-        $translation = new TranslationEntity();
-        $translation->setName($name);
-        $translation->setWriting($writing);
-        $translation->setLanguage($language);
-        return $translation;
+        $transEntity = new TranslationEntity();
+        $transEntity->setName($name);
+        $transEntity->setWriting($writing);
+        $transEntity->setLanguage($language);
+        return $transEntity;
     }
 
-    public function processQueueItem(QueueItem $queue_item)
+    public function processQueueItem(QueueItem $queueItem)
     {
-        $data = $queue_item->getData();
+        $data = $queueItem->getData();
         $translation = $this->getTranslation($data['version']['id'], $data['version']['name']);
         $book = $data['book'];
         $chapter = $data['chapter'];
 
-        foreach ($this->remoteQuery($queue_item->getUrl(), '//*[@id="bible-verses"]/div') as $row) {
+        foreach ($this->remoteQuery($queueItem->getUrl(), '//*[@id="bible-verses"]/div') as $row) {
             list($number, $body) = [$row['sup'], array_pop($row)];
 
             if (is_array($body)) {
                 $body = $body['content'];
             }
 
-            $verse = $this->em
-                ->getRepository('AndyTruong\Bundle\BibleBundle\Entity\VerseEntity')
-                ->findOneBy(['translation' => $translation, 'book' => $book, 'chapter' => $chapter, 'number' => $number]);
+            $findConds = [
+                'translation' => $translation,
+                'book'        => $book,
+                'chapter'     => $chapter,
+                'number'      => $number
+            ];
 
-            if (!$verse) {
+            // Find existing version, if not create new one.
+            if (!$verse = $this->em->getRepository($this->verseClassName)->findOneBy($findConds)) {
                 $verse = new VerseEntity();
             }
 
@@ -169,12 +172,12 @@ class ImportHelper
         }
 
         try {
-            $this->em->remove($queue_item);
+            $this->em->remove($queueItem);
             $this->em->flush();
         }
         catch (\Exception $e) {
-            print_r('[ERROR] Failed to import ' . $queue_item->getUrl());
-            $queue_item->setId($queue_item->getId() + 100000);
+            print_r('[ERROR] Failed to import ' . $queueItem->getUrl());
+            $queueItem->setId($queueItem->getId() + 100000);
             $this->em->flush();
         }
     }

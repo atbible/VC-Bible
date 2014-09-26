@@ -3,12 +3,12 @@
 namespace AndyTruong\Bible\Command;
 
 use AndyTruong\App\Command;
-use AndyTruong\Bundle\ImportBundle\Helper\ImportHelper;
+use AndyTruong\Bible\Helper\ImportHelper;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Input\InputOption;
 use Symfony\Component\Console\Output\OutputInterface;
 
-class ImportTKVNCommand extends Command
+class ImportCommand extends Command
 {
 
     protected function configure()
@@ -24,19 +24,19 @@ class ImportTKVNCommand extends Command
     protected function execute(InputInterface $input, OutputInterface $output)
     {
         $limit = (int) $input->getOption('limit');
-        $manager = new ImportHelper($this->getContainer());
+        $helper = new ImportHelper($this->getApplication());
 
         if ($restart = (bool) $input->getOption('restart')) {
-            return $manager->generateQueueItems();
+            return $helper->generateQueueItems();
         }
 
         for ($i = $limit; $i >= 0; $i--) {
-            if (!$queue_item = $manager->getQueueItem()) {
+            if (!$queue_item = $helper->getQueueItem()) {
                 continue;
             }
 
             $output->writeln('Importing ' . $queue_item->getDescription(), OutputInterface::VERBOSITY_NORMAL);
-            $manager->processQueueItem($queue_item);
+            $helper->processQueueItem($queue_item);
         }
     }
 
