@@ -13,8 +13,8 @@ use Doctrine\ORM\Mapping\Table;
 /**
  * Translation
  *
- * @Table(name="translation")
  * @Entity
+ * @Table(name="translation")
  */
 class TranslationEntity
 {

@@ -3,6 +3,7 @@
 namespace AndyTruong\Bible\Controller;
 
 use AndyTruong\Bible\Application;
+use AndyTruong\Bible\Entity\TranslationEntity;
 use Doctrine\ORM\EntityManagerInterface;
 use Doctrine\ORM\Query;
 
@@ -23,7 +24,7 @@ class ReadingController
 
     /**
      * @url GET /
-     * @view bible/index.php
+     * @view bible/index
      */
     public function getHome()
     {
@@ -35,9 +36,19 @@ class ReadingController
      */
     public function getVersionsAction()
     {
-        return $this->em
+        return array_map(function(TranslationEntity $translation) {
+            return [
+                'id'       => $translation->getId(),
+                'name'     => $translation->getName(),
+                'writing'  => $translation->getWriting(),
+                'language' => [
+                    'id'        => $translation->getLanguage()->getId(),
+                    'direction' => $translation->getLanguage()->getDirection(),
+                ],
+            ];
+        }, $this->em
                 ->getRepository('AndyTruong\Bible\Entity\TranslationEntity')
-                ->findAll()
+                ->findAll())
         ;
     }
 
