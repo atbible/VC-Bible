@@ -1,0 +1,16 @@
+{
+    "doctrine": {
+        "dbal": {
+            "default": {
+                "driver": "pdo_sqlite",
+                "path": "%appDir%/files/db/dev.sqlite"
+            }
+        },
+        "em": {
+            "default": {}
+        }
+    },
+    "restler": {
+        "formats": ["JsonFormat", "HtmlFormat"]
+    }
+}

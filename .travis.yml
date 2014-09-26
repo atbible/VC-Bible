@@ -4,6 +4,14 @@ php:
   - 5.4
   - 5.5
   - 5.6
+  - hhvm
+
+matrix:
+    allow_failures:
+        - php: hhvm-nightly
+    fast_finish: true
 
 before_script: composer install -n
 
+notifications:
+  email: false
