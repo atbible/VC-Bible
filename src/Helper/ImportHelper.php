@@ -4,8 +4,8 @@ namespace AndyTruong\Bible\Helper;
 
 use AndyTruong\Bible\Application;
 use AndyTruong\Bible\Entity\QueueItem;
-use AndyTruong\Bundle\BibleBundle\Entity\TranslationEntity;
-use AndyTruong\Bundle\BibleBundle\Entity\VerseEntity;
+use AndyTruong\Bible\Entity\TranslationEntity;
+use AndyTruong\Bible\Entity\VerseEntity;
 use AndyTruong\Serializer\Unserializer;
 use Doctrine\ORM\EntityManager;
 use Doctrine\ORM\EntityRepository;
