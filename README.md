@@ -21,6 +21,9 @@ php public/index.php bible:import --restart=1
 
 # start importing
 for i in {1..1000}; do php public/index.php bible:import; sleep 5; done;
+
+# Run server, then web application can be found at http://localhost:8888/
+php public/index.php server
 ```
 
 In production site, you need update `./config/default.php`.
