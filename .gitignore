@@ -3,6 +3,8 @@
 /files/bootstrap.php.cache
 /files/cache/*
 /files/logs/*
+/files/db/*
+/files/testing/*
 /files/doctrine/*
 !files/cache/.gitkeep
 !files/logs/.gitkeep
