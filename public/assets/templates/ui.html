@@ -55,7 +55,8 @@
         <sup>{{verse.number}}.</sup>
         <span 
             ng-bind-html="renderVerseBody(verse.body)"
-            editable-textarea="verse.body"></span>
+            editable-textarea="verse.body"
+            onaftersave="updateVerse(verse.id, verse.body)"></span>
       </div>
     </div>
   </div>

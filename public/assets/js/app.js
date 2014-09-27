@@ -1,12 +1,12 @@
 (function (angular) {
     var mods = ['ui.bootstrap', 'BibleUIServices', 'BibleUIDirectives', 'ngSanitize'];
-    var args = ['$scope', '$location', 'ServiceVersions', 'ServiceBooks', 'ServiceVerses', '$sce'];
+    var args = ['$scope', '$location', '$http', 'baseURL', 'ServiceVersions', 'ServiceBooks', 'ServiceVerses', '$sce'];
 
     if ((typeof isAdmin !== 'undefined') && isAdmin) {
         mods.push('xeditable');
     }
 
-    args.push(function ($scope, $location, ServiceVersions, ServiceBooks, ServiceVerses, $sce) {
+    args.push(function ($scope, $location, $http, baseURL, ServiceVersions, ServiceBooks, ServiceVerses, $sce) {
         $scope.context = $scope.input = {version: null, book: null, chapter: 1};
 
         // Parse input
@@ -76,6 +76,14 @@
             return $sce.trustAsHtml(body
                     .replace(/\[(\d+)\]/gm, '<span class="strong strong1"><a href="http://studybible.info/strongs/' + prefix + '$1">[$1]</a></span>')
                     .replace(/\((\d+)\)/gm, '<span class="strong strong2"><a href="http://studybible.info/strongs/' + prefix + '$1">[$1]</a></span></span>'));
+        };
+
+        // Admin
+        $scope.updateVerse = function (id, writing) {
+            $http
+                    .put(baseURL + '/verse/' + id, {id: id, writing: writing})
+                    .success(function ($data) {
+                    });
         };
     });
 

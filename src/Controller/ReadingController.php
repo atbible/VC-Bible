@@ -4,6 +4,8 @@ namespace AndyTruong\Bible\Controller;
 
 use AndyTruong\Bible\Application;
 use AndyTruong\Bible\Entity\TranslationEntity;
+use AndyTruong\Bible\Entity\VerseEntity;
+use AndyTruong\Serializer\Serializer;
 use Doctrine\ORM\EntityManagerInterface;
 use Doctrine\ORM\Query;
 
@@ -128,6 +130,28 @@ class ReadingController
         $query->setParameter(':keywords', "%{$keywords}%");
 
         return $query->execute();
+    }
+
+    /**
+     * Update a verse
+     *
+     * @url PUT /bible/verse/{id}
+     */
+    public function updateVerse($id, array $input = [])
+    {
+        /* @var $verse VerseEntity */
+        if (!$verse = $this->em->getRepository('AndyTruong\Bible\Entity\VerseEntity')->find($id)) {
+            return ['status' => 'FAILED', 'message' => 'Verse not found'];
+        }
+
+        if (!isset($input['writing'])) {
+            return ['status' => 'FAILED', 'message' => 'Invalid input structure. `writing` property must be sent.'];
+        }
+
+        $verse->setBody($input['writing']);
+        $this->em->persist($verse);
+        $this->em->flush();
+        return ['status' => 'OK', 'verse' => (new Serializer)->toArray($verse)];
     }
 
 }
