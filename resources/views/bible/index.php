@@ -23,6 +23,7 @@
         <!-- Custom code -->
         <script src="/assets/js/directives.js"></script>
         <script src="/assets/js/services.js"></script>
+        <script src="/assets/js/search.js"></script>
         <script src="/assets/js/app.js"></script>
         <link rel="stylesheet" href="/assets/css/app.css"/>
     </head>

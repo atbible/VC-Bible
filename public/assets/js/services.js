@@ -24,11 +24,6 @@
                         query: {method: 'GET', isArray: true}
                     });
                 }])
-            .factory('ServiceFind', ['$resource', 'baseURL', function ($resource, baseURL) {
-                    return $resource(baseURL + '/find/:version/:keywords', {}, {
-                        query: {method: 'GET', isArray: true}
-                    });
-                }])
             ;
 
 })(angular);
