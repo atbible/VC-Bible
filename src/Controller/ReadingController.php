@@ -70,30 +70,30 @@ class ReadingController
     }
 
     /**
-     * @url GET /bible/{translation}/{book}/{chapter_number}
+     * @url GET /bible/{translation}/{book}/{chapterNumber}
      * @param string $translation
      * @param string $book
-     * @param int $chapter_number
+     * @param int $chapterNumber
      */
-    public function getChapterAction($translation, $book, $chapter_number)
+    public function getChapterAction($translation, $book, $chapterNumber)
     {
         if (is_numeric($book)) {
-            $book_number = $book;
+            $bookNumber = $book;
         }
         else {
-            foreach ($this->getBooksAction() as $i => $book_info) {
-                if ($book === $book_info[0]) {
-                    $book_number = $i + 1;
+            foreach ($this->getBooksAction() as $i => $bookInfo) {
+                if ($book === $bookInfo[0]) {
+                    $bookNumber = $i + 1;
                 }
             }
         }
 
-        if (!isset($book_number)) {
+        if (!isset($bookNumber)) {
             return [];
         }
 
         $query = $this->em->createQuery(
-            "SELECT v.book, v.chapter, v.number, v.body"
+            "SELECT v.id, v.book, v.chapter, v.number, v.body"
             . " FROM AndyTruong\Bible\Entity\VerseEntity v"
             . "     JOIN v.translation t"
             . " WHERE t.name = :translation AND v.book = :book AND v.chapter = :chapter"
@@ -101,8 +101,8 @@ class ReadingController
         );
 
         $query->setParameter(':translation', $translation);
-        $query->setParameter(':book', $book_number);
-        $query->setParameter(':chapter', $chapter_number);
+        $query->setParameter(':book', $bookNumber);
+        $query->setParameter(':chapter', $chapterNumber);
 
         return $query->getResult();
     }
