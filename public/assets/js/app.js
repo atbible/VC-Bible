@@ -1,6 +1,12 @@
 (function (angular) {
-    var ctrl_arguments = ['$scope', '$location', 'ServiceVersions', 'ServiceBooks', 'ServiceVerses', '$sce'];
-    ctrl_arguments.push(function ($scope, $location, ServiceVersions, ServiceBooks, ServiceVerses, $sce) {
+    var mods = ['ui.bootstrap', 'BibleUIServices', 'BibleUIDirectives', 'ngSanitize'];
+    var args = ['$scope', '$location', 'ServiceVersions', 'ServiceBooks', 'ServiceVerses', '$sce'];
+
+    if ((typeof isAdmin !== 'undefined') && isAdmin) {
+        mods.push('xeditable');
+    }
+
+    args.push(function ($scope, $location, ServiceVersions, ServiceBooks, ServiceVerses, $sce) {
         $scope.context = $scope.input = {version: null, book: null, chapter: 1};
 
         // Parse input
@@ -73,8 +79,8 @@
         };
     });
 
-    angular
-            .module('BibleUI', ['ui.bootstrap', 'BibleUIServices', 'BibleUIDirectives', 'ngSanitize'])
+    var app = angular
+            .module('BibleUI', mods)
             .filter('range', function () {
                 return function (input, min, max) {
                     min = parseInt(min); //Make string input int
@@ -89,6 +95,13 @@
                     return input.replace(/(\[\d+\])/, '<span class="strong strong1">$1</span>');
                 };
             })
-            .controller('BibleUIController', ctrl_arguments);
+            .controller('BibleUIController', args);
+
+    if ((typeof isAdmin !== 'undefined') && isAdmin) {
+        app.run(function (editableOptions) {
+            editableOptions.theme = 'bs3';
+        });
+    }
+
 
 })(angular);

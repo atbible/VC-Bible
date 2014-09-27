@@ -37,7 +37,7 @@ class ReadingController
      */
     protected function getAdminHome()
     {
-        return [];
+        return ['isAdmin' => true];
     }
 
     /**

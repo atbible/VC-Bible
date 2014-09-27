@@ -55,3 +55,9 @@ a { cursor: pointer; }
     padding-top: 40px; padding-bottom: 40px; margin-top: 100px; text-align: center;
     color: #777; border-top: 1px solid #e5e5e5;
 }
+
+/* Admin */
+.verses .editable-click { color: inherit; border-bottom: none; }
+.verses form { width: 100%; }
+.verses .form-inline .form-group { display: block; }
+.verses .editable-input.editable-has-buttons { width: 75%; }
