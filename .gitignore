@@ -1,4 +1,4 @@
-/config/parameters.yml
+/config/default.php
 /files/*.sqlite
 /files/bootstrap.php.cache
 /files/cache/*
