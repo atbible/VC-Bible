@@ -32,6 +32,15 @@ class ReadingController
     }
 
     /**
+     * @url GET /admin
+     * @view bible/index
+     */
+    protected function getAdminHome()
+    {
+        return [];
+    }
+
+    /**
      * @url GET /bible/versions
      */
     public function getVersionsAction()

@@ -11,6 +11,12 @@
         }
     },
     "restler": {
-        "formats": ["JsonFormat", "HtmlFormat"]
+        "formats": ["JsonFormat", "HtmlFormat"],
+        "auth": {
+            "basic": {
+                "user": "go",
+                "password": "go"
+            }
+        }
     }
 }
