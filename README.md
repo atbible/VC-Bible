@@ -1,8 +1,6 @@
 Bible Reading Application
 ====
 
-![](https://raw.githubusercontent.com/v3kwip/vcbible/v0.1/resources/responsive.png)
-
 ### Install
 
 ```bash
@@ -29,3 +27,13 @@ php public/index.php server
 ```
 
 In production site, you need update `./config/default.php`.
+
+### Features
+
+1. Multiple translation
+2. Inline edit interface
+3. Responsive UI
+
+### Screenshot
+
+![](https://raw.githubusercontent.com/v3kwip/vcbible/v0.1/resources/responsive.png)
