@@ -17,7 +17,7 @@ class ImportCommand extends Command
             ->setName('bible:import')
             ->setDescription('Strart importing…')
             ->addOption('restart', null, InputOption::VALUE_OPTIONAL, 'Restart importing process', false)
-            ->addOption('limit', null, InputOption::VALUE_OPTIONAL, 'Restart importing process', 100)
+            ->addOption('limit', null, InputOption::VALUE_OPTIONAL, 'Limit importing commands', 100)
         ;
     }
 
