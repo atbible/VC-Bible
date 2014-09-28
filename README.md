@@ -1,7 +1,7 @@
 Bible Reading Application
 ====
 
-![](https://gist.github.com/andytruong/f66f5993dacf18c60841/raw/25314c0a1aed6fcd528544588efe257dbc01b100/responsive.png)
+![](https://raw.githubusercontent.com/v3kwip/vcbible/v0.1/resources/responsive.png)
 
 ### Install
 
