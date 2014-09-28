@@ -1,13 +1,14 @@
 (function (angular) {
-    var mods = ['ui.bootstrap', 'BibleUIServices', 'BibleUIDirectives', 'ngSanitize'];
-    var args = ['$scope', '$location', '$http', 'baseURL', 'ServiceVersions', 'ServiceBooks', 'ServiceVerses', '$sce'];
+    var mods = ['ui.bootstrap', 'BibleUIServices', 'BibleUISearchHelper', 'BibleUIDirectives', 'ngSanitize'];
+    var args = ['$scope', '$location', '$http', 'baseURL', 'ServiceVersions', 'ServiceBooks', 'ServiceVerses', '$uiSearchHelper', '$sce'];
 
     if ((typeof isAdmin !== 'undefined') && isAdmin) {
         mods.push('xeditable');
     }
 
-    args.push(function ($scope, $location, $http, baseURL, ServiceVersions, ServiceBooks, ServiceVerses, $sce) {
+    args.push(function ($scope, $location, $http, baseURL, ServiceVersions, ServiceBooks, ServiceVerses, $uiSearchHelper, $sce) {
         $scope.context = $scope.input = {version: null, book: null, chapter: 1};
+        angular.extend($scope, $uiSearchHelper);
 
         // Parse input
         var path = $location.path().match(/(\w+)\/(\w+)\/(\w+)/);

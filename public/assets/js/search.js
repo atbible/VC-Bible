@@ -10,14 +10,14 @@
                 var helper = {};
 
                 helper.doSearch = function () {
-                    helper.search_results = ServiceFind.query({
-                        version: helper.context.version.name,
-                        keywords: helper.search.keywords
+                    this.search_results = ServiceFind.query({
+                        version: this.context.version.name,
+                        keywords: this.search.keywords
                     });
                 };
 
                 helper.clearSearchResults = function () {
-                    helper.search_results = [];
+                    this.search_results = [];
                 };
 
                 return helper;
