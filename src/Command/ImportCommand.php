@@ -8,6 +8,10 @@ use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Input\InputOption;
 use Symfony\Component\Console\Output\OutputInterface;
 
+/**
+ * Use `progressbar` when have free time
+ *  http://symfony.com/doc/current/components/console/helpers/progressbar.html
+ */
 class ImportCommand extends Command
 {
 
