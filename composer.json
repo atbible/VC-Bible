@@ -10,6 +10,6 @@
     },
     "require": {
         "php": ">=5.4.0",
-        "andytruong/app": "0.1.*@dev"
+        "andytruong/app": "~0.1.0"
     }
 }
