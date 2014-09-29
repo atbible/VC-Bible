@@ -1,4 +1,4 @@
-Bible Reading Application [![Build Status](https://travis-ci.org/thanhkinh/vcbible.svg?branch=v0.1)](https://travis-ci.org/thanhkinh/vcbible)
+Bible Reading Application [![Build Status](https://travis-ci.org/thanhkinh/vcbible.svg?branch=v0.1)](https://travis-ci.org/thanhkinh/vcbible)  [![License](https://poser.pugx.org/andytruong/vcbible/license.png)](https://packagist.org/packages/andytruong/vcbible)
 ====
 
 ### Install
