@@ -17,11 +17,11 @@
     <script src="//angular-ui.github.io/bootstrap/ui-bootstrap-tpls-0.12.0.js"></script>
 
     <?php if (!empty($data['response']['isAdmin'])): ?>
-      <link href="//cdn.rawgit.com/vitalets/angular-xeditable/0.1.8/dist/css/xeditable.css" rel="stylesheet">
-      <script src="//cdn.rawgit.com/vitalets/angular-xeditable/0.1.8/dist/js/xeditable.min.js"></script>
-      <script>
-        var isAdmin = true;
-      </script>
+        <link href="//cdn.rawgit.com/vitalets/angular-xeditable/0.1.8/dist/css/xeditable.css" rel="stylesheet">
+        <script src="//cdn.rawgit.com/vitalets/angular-xeditable/0.1.8/dist/js/xeditable.min.js"></script>
+        <script>
+            var isAdmin = true;
+        </script>
     <?php endif; ?>
 
     <!-- Custom code -->

@@ -2,7 +2,9 @@
     "parameters": {
         "restler.resources": [
             ["AndyTruong\\Bible\\Controller\\ReadingController", "/"]
-        ]
+        ],
+        "restler.authentication.basic.username": "go",
+        "restler.authentication.basic.password": "go"
     },
     "services": {
         "bible.command.import": {

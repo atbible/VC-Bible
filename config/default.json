@@ -9,14 +9,5 @@
         "em": {
             "default": {}
         }
-    },
-    "restler": {
-        "formats": ["JsonFormat", "HtmlFormat"],
-        "auth": {
-            "basic": {
-                "user": "go",
-                "password": "go"
-            }
-        }
     }
 }
