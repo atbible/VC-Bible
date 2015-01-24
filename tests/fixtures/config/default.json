@@ -3,7 +3,7 @@
         "dbal": {
             "default": {
                 "driver": "pdo_sqlite",
-                "path": "%appDir%/../../files/testing/db.sqlite"
+                "path": "%appDir%/../../files/db/testing.sqlite"
             }
         },
         "em": {

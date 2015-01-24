@@ -1,0 +1,26 @@
+export COMPOSER_HOME="$OPENSHIFT_DATA_DIR/.composer"
+
+alias composer="/opt/rh/php54/root/usr/bin/php $OPENSHIFT_DATA_DIR/composer.phar --working-dir=$OPENSHIFT_REPO_DIR/"
+
+if [ ! -f "$OPENSHIFT_DATA_DIR/composer.phar" ]; then
+    curl -s https://getcomposer.org/installer | /opt/rh/php54/root/usr/bin/php -- --install-dir=$OPENSHIFT_DATA_DIR
+else
+    composer self-update
+fi
+
+# check and set the symlink for vendor dir
+if [ ! -d "$OPENSHIFT_DATA_DIR/vendor" ]; then
+    mkdir $OPENSHIFT_DATA_DIR/vendor
+    ln -s $OPENSHIFT_DATA_DIR/vendor $OPENSHIFT_REPO_DIR/vendor
+    chmod -R 0777 $OPENSHIFT_DATA_DIR/vendor
+    cd $OPENSHIFT_REPO_DIR
+    composer install --prefer-source
+    composer dumpautoload
+else
+    ln -s $OPENSHIFT_DATA_DIR/vendor $OPENSHIFT_REPO_DIR/vendor
+    cd $OPENSHIFT_REPO_DIR
+    composer update --no-dev --prefer-source
+    composer dumpautoload
+fi
+
+chmod 777 -Rfv $OPENSHIFT_REPO_DIR/files/cache
