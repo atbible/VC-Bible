@@ -1,4 +1,5 @@
 /config/default.php
+/files/container.php
 /files/*.sqlite
 /files/bootstrap.php.cache
 /files/cache/*
