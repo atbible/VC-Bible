@@ -1,4 +1,4 @@
-(function (angular) {
+(function (angular, window) {
     var mods = ['ui.bootstrap', 'BibleUIServices', 'BibleUISearchHelper', 'BibleUIDirectives', 'ngSanitize'];
     var args = ['$scope', '$location', '$http', 'baseURL', 'ServiceVersions', 'ServiceBooks', 'ServiceVerses', '$uiSearchHelper', '$sce'];
 
@@ -31,8 +31,12 @@
             },
             chapter: function () {
                 var params = {'version': $scope.context.version.name, 'book': $scope.context.book[0], 'chapter': $scope.context.chapter};
+                var path = '/' + $scope.context.version.name + '/' + $scope.context.book[0] + '/' + $scope.context.chapter;
                 $scope.verses = ServiceVerses.query(params);
-                $location.path('/' + $scope.context.version.name + '/' + $scope.context.book[0] + '/' + $scope.context.chapter);
+                $location.path(path);
+
+                // Track page view
+                window.ga('send', 'pageview', {page: path});
             },
             search_results: function (version, book, chapter) {
                 for (var index in $scope.versions)
@@ -42,6 +46,17 @@
                 $scope.context.book = $scope.books[book - 1];
                 $scope.context.chapter = parseInt(chapter);
                 $scope.change.chapter();
+
+                // Track user action
+                window.ga('send', 'event', {
+                    eventCategory: 'Search',
+                    eventAction: 'SelectResult',
+                    eventValue: {
+                        version: version,
+                        book: $scope.context.chapter,
+                        chapter: chapter
+                    }
+                });
             }
         };
 
@@ -112,5 +127,4 @@
         });
     }
 
-
-})(angular);
+})(angular, window);

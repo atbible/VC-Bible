@@ -1,4 +1,4 @@
-(function (angular) {
+(function (angular, window) {
     angular
             .module('BibleUISearchHelper', ['BibleUIServices'])
             .factory('ServiceFind', ['$resource', 'baseURL', function ($resource, baseURL) {
@@ -14,6 +14,13 @@
                         version: this.context.version.name,
                         keywords: this.search.keywords
                     });
+
+                    // Track user action
+                    window.ga('send', 'event', {
+                        'eventCategory': 'Search',
+                        'eventAction': 'submit',
+                        'eventValue': {version: this.context.version.name, keywords: this.search.keywords}
+                    });
                 };
 
                 helper.clearSearchResults = function () {
@@ -23,4 +30,4 @@
                 return helper;
             });
 
-})(angular);
+})(angular, window);

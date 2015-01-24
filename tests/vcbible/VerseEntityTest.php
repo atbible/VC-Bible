@@ -23,7 +23,7 @@ class VerseEntityTest extends PHPUnit_Framework_TestCase
     protected $class_names = [
         'AndyTruong\Bible\Entity\VerseEntity',
         'AndyTruong\Bible\Entity\TranslationEntity',
-        '\AndyTruong\App\Entity\LanguageEntity'
+        'AndyTruong\App\Entity\LanguageEntity'
     ];
 
     protected function setUp()
