@@ -10,6 +10,7 @@
     },
     "require": {
         "php": ">=5.4.0",
-        "andytruong/app": "~0.1.0"
+        "atphp/common": "0.1.*@dev",
+        "atphp/webapp": "0.1.*@dev"
     }
 }

@@ -1,0 +1,17 @@
+{
+    "parameters": {
+        "restler.resources": [
+            ["AndyTruong\\Bible\\Controller\\ReadingController", "/"]
+        ]
+    },
+    "services": {
+        "bible.command.import": {
+            "class": "AndyTruong\\Bible\\Command\\ImportCommand",
+            "tags": [
+                {
+                    "name": "console.command"
+                }
+            ]
+        }
+    }
+}

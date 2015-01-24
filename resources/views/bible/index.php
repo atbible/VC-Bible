@@ -8,20 +8,20 @@
     <link rel="icon" type="image/x-icon" href="/favicon.ico" />
 
     <!-- Bootstrap -->
-    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css"/>
 
     <!-- AngularJS framework -->
-    <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.3.0-rc.0/angular.min.js"></script>
-    <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.3.0-rc.0/angular-resource.min.js"></script>
-    <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.3.0-rc.0/angular-sanitize.min.js"></script>
-    <script src="//angular-ui.github.io/bootstrap/ui-bootstrap-tpls-0.11.0.js"></script>
+    <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.3.10/angular.min.js"></script>
+    <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.3.10/angular-resource.min.js"></script>
+    <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.3.10/angular-sanitize.min.js"></script>
+    <script src="//angular-ui.github.io/bootstrap/ui-bootstrap-tpls-0.12.0.js"></script>
 
     <?php if (!empty($data['response']['isAdmin'])): ?>
-        <link href="//cdn.rawgit.com/vitalets/angular-xeditable/0.1.8/dist/css/xeditable.css" rel="stylesheet">
-        <script src="//cdn.rawgit.com/vitalets/angular-xeditable/0.1.8/dist/js/xeditable.min.js"></script>
-        <script>
-            var isAdmin = true;
-        </script>
+      <link href="//cdn.rawgit.com/vitalets/angular-xeditable/0.1.8/dist/css/xeditable.css" rel="stylesheet">
+      <script src="//cdn.rawgit.com/vitalets/angular-xeditable/0.1.8/dist/js/xeditable.min.js"></script>
+      <script>
+        var isAdmin = true;
+      </script>
     <?php endif; ?>
 
     <!-- Custom code -->
@@ -59,4 +59,5 @@
         </p>
       </div>
     </div>
-  </body></html>
+  </body>
+</html>

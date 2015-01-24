@@ -2,8 +2,8 @@
 
 namespace AndyTruong\Bible\Command;
 
-use AndyTruong\App\Command;
 use AndyTruong\Bible\Helper\ImportHelper;
+use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Input\InputOption;
 use Symfony\Component\Console\Output\OutputInterface;
@@ -19,7 +19,7 @@ class ImportCommand extends Command
     {
         $this
             ->setName('bible:import')
-            ->setDescription('Strart importing…')
+            ->setDescription('Start importing…')
             ->addOption('restart', null, InputOption::VALUE_OPTIONAL, 'Restart importing process', false)
             ->addOption('limit', null, InputOption::VALUE_OPTIONAL, 'Limit importing commands', 100)
         ;
