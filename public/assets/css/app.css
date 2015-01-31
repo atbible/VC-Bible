@@ -19,6 +19,13 @@ a { cursor: pointer; }
     }
 }
 
+@media (max-width: 767px) {
+    .navbar-toggle { position: absolute; right: 0; z-index: 500; }
+    .nav > li { display: inline-block; }
+    .navbar-brand { display: none; }
+    .navbar-nav .open .dropdown-menu>li>a { width: 37px; padding: 5px; text-align: right ;}
+}
+
 .sidebar { display: none; }
 .reading-area .books    { display: none; }
 .reading-area .chapters { display: none; }
