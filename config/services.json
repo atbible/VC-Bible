@@ -9,10 +9,9 @@
     "services": {
         "bible.command.import": {
             "class": "AndyTruong\\Bible\\Command\\ImportCommand",
-            "tags": [
-                {
-                    "name": "console.command"
-                }
+            "tags": [{"name": "console.command"}],
+            "calls": [
+              ["setContainer", ["@service_container"]]
             ]
         }
     }

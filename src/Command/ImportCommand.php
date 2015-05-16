@@ -7,6 +7,7 @@ use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Input\InputOption;
 use Symfony\Component\Console\Output\OutputInterface;
+use Symfony\Component\DependencyInjection\ContainerAwareTrait;
 
 /**
  * Use `progressbar` when have free time
@@ -15,20 +16,22 @@ use Symfony\Component\Console\Output\OutputInterface;
 class ImportCommand extends Command
 {
 
+    use ContainerAwareTrait;
+
     protected function configure()
     {
         $this
             ->setName('bible:import')
             ->setDescription('Start importing…')
             ->addOption('restart', null, InputOption::VALUE_OPTIONAL, 'Restart importing process', false)
-            ->addOption('limit', null, InputOption::VALUE_OPTIONAL, 'Limit importing commands', 100)
-        ;
+            ->addOption('limit', null, InputOption::VALUE_OPTIONAL, 'Limit importing commands', 100);
     }
 
     protected function execute(InputInterface $input, OutputInterface $output)
     {
         $limit = (int) $input->getOption('limit');
-        $helper = new ImportHelper($this->getApplication());
+
+        $helper = new ImportHelper($this->container);
 
         if ($restart = (bool) $input->getOption('restart')) {
             return $helper->generateQueueItems();

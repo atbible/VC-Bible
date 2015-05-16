@@ -15,7 +15,7 @@ use Symfony\Component\DependencyInjection\ContainerInterface;
 class ImportHelper
 {
 
-    /** @var ContainerInterface  */
+    /** @var Application */
     private $app;
 
     /** @var EntityManager Entity manager */
@@ -42,9 +42,9 @@ class ImportHelper
     /** @var string */
     private $verseClassName = 'AndyTruong\Bible\Entity\VerseEntity';
 
-    public function __construct(Application $app)
+    public function __construct(ContainerInterface $container)
     {
-        $this->app = $app;
+        $this->app = $container->get('app');
         $this->em = $this->app->getEntityManager();
     }
 
@@ -108,9 +108,8 @@ class ImportHelper
     {
         /* @var $repository EntityRepository */
         return $this->em
-                ->getRepository($this->queueItemClassName)
-                ->findOneBy([], ['id' => 'ASC'])
-        ;
+            ->getRepository($this->queueItemClassName)
+            ->findOneBy([], ['id' => 'ASC']);
     }
 
     public function getTranslation($name, $writing)
