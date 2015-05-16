@@ -25,7 +25,7 @@ class ReadingController
     }
 
     /**
-     * @url GET /
+     * @url  GET /
      * @view bible/index
      */
     public function getHome()
@@ -34,7 +34,7 @@ class ReadingController
     }
 
     /**
-     * @url GET /admin
+     * @url  GET /admin
      * @view bible/index
      */
     protected function getAdminHome()
@@ -47,7 +47,7 @@ class ReadingController
      */
     public function getVersionsAction()
     {
-        return array_map(function(TranslationEntity $translation) {
+        return array_map(function (TranslationEntity $translation) {
             return [
                 'id'       => $translation->getId(),
                 'name'     => $translation->getName(),
@@ -58,9 +58,8 @@ class ReadingController
                 ],
             ];
         }, $this->em
-                ->getRepository('AndyTruong\Bible\Entity\TranslationEntity')
-                ->findAll())
-        ;
+            ->getRepository('AndyTruong\Bible\Entity\TranslationEntity')
+            ->findAll());
     }
 
     /**
@@ -75,7 +74,7 @@ class ReadingController
      * @url GET /bible/{translation}/{book}/{chapterNumber}
      * @param string $translation
      * @param string $book
-     * @param int $chapterNumber
+     * @param int    $chapterNumber
      */
     public function getChapterAction($translation, $book, $chapterNumber)
     {
@@ -96,7 +95,7 @@ class ReadingController
 
         $query = $this->em->createQuery(
             "SELECT v.id, v.book, v.chapter, v.number, v.body"
-            . " FROM AndyTruong\Bible\Entity\VerseEntity v"
+            . " FROM AndyTruong\\Bible\\Entity\\VerseEntity v"
             . "     JOIN v.translation t"
             . " WHERE t.name = :translation AND v.book = :book AND v.chapter = :chapter"
             . " ORDER BY v.number"
@@ -118,10 +117,10 @@ class ReadingController
      */
     public function findAction($translation, $keywords)
     {
-        /* @var $query Query  */
+        /* @var $query Query */
         $query = $this->em->createQuery(
             "SELECT v.book, v.chapter, v.number, v.body"
-            . " FROM AndyTruong\Bible\Entity\VerseEntity v"
+            . " FROM AndyTruong\\Bible\\Entity\\VerseEntity v"
             . "     JOIN v.translation t"
             . " WHERE t.name = :translation AND v.body LIKE :keywords"
             . " ORDER BY v.book, v.chapter, v.number"

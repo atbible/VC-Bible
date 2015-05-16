@@ -7,7 +7,7 @@ use AndyTruong\App\Application as BaseApplication;
 class Application extends BaseApplication
 {
 
-    protected $name = 'Bible Reading application';
+    protected $name    = 'Bible Reading application';
     protected $version = '0.1.0-dev';
 
     public function __construct($appDir = null)

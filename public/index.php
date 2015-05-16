@@ -2,13 +2,7 @@
 
 use AndyTruong\Bible\Application;
 
-@include_once dirname(__DIR__) . '/vendor/autoload.php';
-@include_once dirname(__DIR__) . '/../../autoload.php';
+require_once dirname(__DIR__) . '/vendor/autoload.php';
 
-$app = new Application;
-if (isset($_SERVER['REQUEST_URI'])) { // Handle default all web requests
-    $app->getRestler()->handle();
-}
-else { // Start console
-    $app->console();
-}
+$app = new Application();
+isset($_SERVER['REQUEST_URI']) ? $app->getRestler()->handle() : $app->console();
