@@ -1,16 +1,19 @@
 {
-    "name": "andytruong/vcbible",
-    "license": "MIT",
-    "type": "project",
-    "description": "Application reading application",
-    "autoload": {
-        "psr-4": {
-            "AndyTruong\\Bible\\": "src/"
-        }
-    },
-    "require": {
-        "php": ">=5.4.0",
-        "atphp/common": "0.1.*@dev",
-        "atphp/webapp": "0.1.*@dev"
+  "name": "andytruong/vcbible",
+  "license": "MIT",
+  "type": "project",
+  "description": "Application reading application",
+  "autoload": {
+    "psr-4": {
+      "AndyTruong\\Bible\\": "src/"
     }
+  },
+  "require": {
+    "php": ">=5.4.0",
+    "atphp/common": "0.1.*@dev",
+    "atphp/webapp": "0.1.*@dev"
+  },
+  "require-dev": {
+    "symfony/var-dumper": "~2.6.0"
+  }
 }
